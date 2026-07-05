@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/logo.png" alt="Angel AI Logo" width="120" height="120" />
+  <img src="logo.png" alt="Angel AI Logo" width="120" height="120" />
   <h1>Angel AI — Personal Safety & Guardian Companion</h1>
   <p><strong>An enterprise-grade, proactive personal safety web and mobile application powered by AI de-escalation coaching, covert emergency triggers, and tamper-proof evidence archiving.</strong></p>
 
