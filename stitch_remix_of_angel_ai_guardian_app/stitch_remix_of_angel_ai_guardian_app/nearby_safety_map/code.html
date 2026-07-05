@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Nearby Safety Map | Angel AI</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c99475",
+                    "secondary": "#94483f",
+                    "background": "#fff8f7",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f7",
+                    "outline": "#887175",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "on-primary-fixed": "#3f0018",
+                    "secondary-container": "#ff9f93",
+                    "on-secondary-container": "#79332c",
+                    "primary-fixed": "#ffd9e0",
+                    "surface-container-low": "#fff0f1",
+                    "surface-dim": "#e9d5d8",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#23191b",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecee",
+                    "surface-container-highest": "#f1dee0",
+                    "surface-tint": "#a33759",
+                    "on-secondary-fixed": "#3d0604",
+                    "surface-variant": "#f1dee0",
+                    "inverse-surface": "#392d30",
+                    "inverse-primary": "#ffb1c2",
+                    "on-tertiary-container": "#522d15",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "tertiary": "#805439",
+                    "primary": "#a33759",
+                    "tertiary-fixed": "#ffdbc8",
+                    "on-tertiary-fixed": "#311301",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "surface-container-high": "#f7e3e6",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "surface-container": "#fde9ec",
+                    "on-surface-variant": "#554245",
+                    "on-primary-container": "#6e0a32",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#23191b",
+                    "secondary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#f57799",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc0c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xxl": "48px",
+                    "gutter-mobile": "16px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        }
+        .sos-pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 119, 153, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(245, 119, 153, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 119, 153, 0); }
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(255,248,247,0.8) 0%, rgba(255,248,247,0) 20%, rgba(255,248,247,0) 80%, rgba(255,248,247,0.6) 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-hidden h-screen w-full select-none">
+<!-- Full Map Background -->
+<div class="fixed inset-0 z-0 overflow-hidden">
+<div class="w-full h-full grayscale-[0.2] contrast-[0.9] opacity-90 transition-opacity duration-700" data-location="London" style="">
+<img class="w-full h-full object-cover" data-alt="A detailed high-angle 3D satellite view of a modern urban neighborhood with soft, warm afternoon lighting. The streets are clean, with lush green trees lining the sidewalks and elegant white architectural buildings. The visual style is premium and minimalist, following a light-mode aesthetic with a palette of soft creams, peaches, and rose pink accents. The atmosphere is calm, safe, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNkQY1swj0HErwjIzNyhvCyQBwndZkTlXymHCKNuVzNx-mbTX2WjF21MDDIToHX9QBjdiG7POnRlRYMXUMo1Gz_sZnTsP_-uCmLrfqpc2sYXvkXbN-p08lY-_W0sZL1yLvFDEgZSEVlCf2SeuDn1-7vA0D5yL1szhMIT9CP1oCV83hnQOXh5OhBzri7hO-WqbaQIGpAZ9Sc-zxETL0oc89lpIqeUh6ePDRdMWRVqx2JzwvMudq8RPwUA"/>
+</div>
+<div class="absolute inset-0 map-gradient-overlay pointer-events-none"></div>
+</div>
+<!-- Top AppBar (from Shared Components) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 backdrop-blur-xl bg-background/80">
+<div class="flex items-center gap-2">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Angel AI</h1>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden ring-2 ring-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a friendly, professional young woman with a warm smile, styled in high-key lighting for a premium look. She has a minimalist aesthetic and is set against a soft, creamy background. The image represents a user profile avatar for a safety and guardian application, emphasizing trust and sophistication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9-NxRJcphrduaVOXeZhrEqd0w5RlDBQmQJgmBPWQD-c0kFNkWFgRnVftz7BKyYE0ffh1V4V8bLCmIyWfNbDS3RYaS_LAS5ZJigerz9dvzalv6qk3XR-Opo0UucXu8MtDhFS11GmvHFkxPWXmubcXBS1Iu0FTptZjBi-z_vref-52Fd2or-cho50GA72lEZv3CX1yyDb2Yn9uGiRXaE5ce26AJq2n0GFMAxJgwvbvIVKWYHpldte0Brw"/>
+</div>
+</header>
+<!-- Floating Search & Filters Container -->
+<div class="fixed top-20 left-0 w-full px-margin-mobile z-40 space-y-4">
+<!-- Floating Search Bar -->
+<div class="relative flex items-center bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.04)] rounded-2xl h-14 w-full border border-surface-container-high transition-all focus-within:ring-2 focus-within:ring-primary/20">
+<span class="material-symbols-outlined ml-4 text-on-surface-variant">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-outline/60 px-3" placeholder="Search for safe locations..." type="text"/>
+<button class="mr-4 text-primary">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Floating Chips -->
+<div class="flex gap-2 overflow-x-auto custom-scrollbar pb-2 -mx-margin-mobile px-margin-mobile">
+<button class="whitespace-nowrap flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-full text-label-md font-label-md shadow-sm">
+<span class="material-symbols-outlined text-[18px]">local_police</span>
+                Police Stations
+            </button>
+<button class="whitespace-nowrap flex items-center gap-2 bg-white text-on-surface-variant border border-surface-container-high px-4 py-2 rounded-full text-label-md font-label-md shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">medical_services</span>
+                Hospitals
+            </button>
+<button class="whitespace-nowrap flex items-center gap-2 bg-white text-on-surface-variant border border-surface-container-high px-4 py-2 rounded-full text-label-md font-label-md shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                Safe Zones
+            </button>
+<button class="whitespace-nowrap flex items-center gap-2 bg-white text-on-surface-variant border border-surface-container-high px-4 py-2 rounded-full text-label-md font-label-md shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">subway</span>
+                Metro Stations
+            </button>
+</div>
+</div>
+<!-- Map Pins (Visual Markers) -->
+<div class="absolute inset-0 pointer-events-none z-10">
+<!-- Center User Marker -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center animate-ping absolute opacity-40"></div>
+<div class="w-6 h-6 bg-primary border-4 border-white rounded-full shadow-lg z-10 relative"></div>
+</div>
+<!-- Safe Zone Marker 1 -->
+<div class="absolute top-[35%] left-[60%] -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="bg-white rounded-2xl p-2 shadow-xl flex items-center gap-2 ring-1 ring-primary/10">
+<div class="w-8 h-8 bg-tertiary-container/20 text-tertiary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div class="pr-2">
+<p class="text-label-sm font-label-sm text-on-surface leading-tight">Safe Haven</p>
+<p class="text-[10px] text-outline font-medium">200m away</p>
+</div>
+</div>
+<div class="w-0.5 h-4 bg-white/80 mx-auto"></div>
+</div>
+<!-- Police Station Marker -->
+<div class="absolute top-[55%] left-[25%] -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center shadow-lg border-2 border-white scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_police</span>
+</div>
+</div>
+</div>
+<!-- SOS Floating Button -->
+<button class="fixed right-5 bottom-48 z-40 w-16 h-16 rounded-full bg-gradient-to-tr from-primary to-secondary-container text-white shadow-[0px_8px_30px_rgba(245,119,153,0.3)] sos-pulse flex flex-col items-center justify-center border-2 border-white/20 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+<span class="text-[10px] font-bold tracking-widest leading-none">SOS</span>
+</button>
+<!-- Bottom Sheet Component -->
+<div class="fixed bottom-24 left-margin-mobile right-margin-mobile z-40 transition-transform duration-500 transform translate-y-0" id="bottom-sheet">
+<div class="bg-white rounded-[28px] shadow-[0px_8px_40px_rgba(0,0,0,0.1)] p-5 border border-surface-container-high">
+<!-- Drag Handle -->
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full mx-auto mb-5"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold uppercase tracking-wider mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Nearest Safe Location
+                    </span>
+<h2 class="text-title-lg font-title-lg text-on-surface">The Guardian Hub</h2>
+<div class="flex items-center gap-2 mt-1">
+<div class="flex">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px] text-outline-variant" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline">4.8 (124 reviews)</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-lg-mobile font-headline-lg-mobile text-primary leading-tight">2</p>
+<p class="text-[10px] font-bold text-outline uppercase tracking-tighter">min walk</p>
+</div>
+</div>
+<div class="flex gap-3 mb-2">
+<button class="flex-1 h-14 bg-primary text-white rounded-2xl font-bold flex items-center justify-center gap-2 shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined">directions</span>
+                    Get Directions
+                </button>
+<button class="w-14 h-14 bg-surface-container-high text-primary rounded-2xl flex items-center justify-center shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</button>
+</div>
+<p class="text-center text-label-sm font-label-sm text-outline mt-3">
+                Located at: 124 Sanctuary St, Victoria Park
+            </p>
+</div>
+</div>
+<!-- Bottom Nav Bar (from Shared Components) -->
+<nav class="fixed bottom-6 left-5 right-5 z-50 flex justify-around items-center h-20 px-2 bg-surface/90 backdrop-blur-lg rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<!-- Guardian -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
+<span class="text-label-sm font-label-sm">Guardian</span>
+</a>
+<!-- Safety (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-label-sm font-label-sm">Safety</span>
+</a>
+<!-- Vault -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_lock">folder_check</span>
+<span class="text-label-sm font-label-sm">Vault</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Overlay for content readability when map is busy -->
+<div class="fixed inset-0 bg-background/5 mix-blend-overlay pointer-events-none"></div>
+<script>
+        // Simple Interaction logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const bottomSheet = document.getElementById('bottom-sheet');
+            let startY = 0;
+            let currentY = 0;
+
+            // Micro-interaction for bottom sheet drag simulation (visual only)
+            bottomSheet.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+            });
+
+            bottomSheet.addEventListener('touchmove', (e) => {
+                currentY = e.touches[0].clientY;
+                const diff = currentY - startY;
+                if (diff > 0) {
+                    bottomSheet.style.transform = `translateY(${diff}px)`;
+                }
+            });
+
+            bottomSheet.addEventListener('touchend', () => {
+                bottomSheet.style.transform = 'translateY(0)';
+            });
+
+            // Active State Logic check
+            // We are on the "Safety" screen, so "Safety" is active in nav.
+        });
+    </script>
+</body></html>

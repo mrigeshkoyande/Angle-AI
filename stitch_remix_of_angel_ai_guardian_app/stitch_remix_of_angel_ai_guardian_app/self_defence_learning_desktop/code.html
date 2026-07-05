@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Angel AI | Self-Defense Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#a33759",
+                    "on-primary-container": "#6e0a32",
+                    "inverse-primary": "#ffb1c2",
+                    "secondary": "#94483f",
+                    "on-tertiary-fixed": "#311301",
+                    "on-tertiary-container": "#522d15",
+                    "secondary-container": "#ff9f93",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#554245",
+                    "outline": "#887175",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#392d30",
+                    "surface-container-highest": "#f1dee0",
+                    "background": "#fff8f7",
+                    "outline-variant": "#dbc0c4",
+                    "on-secondary-fixed": "#3d0604",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#805439",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "surface-dim": "#e9d5d8",
+                    "tertiary-container": "#c99475",
+                    "surface-container-low": "#fff0f1",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffd9e0",
+                    "secondary-fixed": "#ffdad5",
+                    "on-surface": "#23191b",
+                    "tertiary-fixed": "#ffdbc8",
+                    "surface-container": "#fde9ec",
+                    "primary": "#a33759",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "surface-variant": "#f1dee0",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "surface": "#fff8f7",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "on-primary-fixed": "#3f0018",
+                    "on-background": "#23191b",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "inverse-on-surface": "#ffecee",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#f7e3e6",
+                    "surface-bright": "#fff8f7",
+                    "primary-container": "#f57799",
+                    "on-secondary-container": "#79332c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "margin-mobile": "20px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "unit": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "gutter-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dbc0c4;
+            border-radius: 10px;
+        }
+        .pulse-soft {
+            animation: pulse-soft 3s infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-margin-mobile md:px-xl py-md">
+<div class="flex items-center gap-xl">
+<span class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim">Angel AI</span>
+<div class="hidden md:flex gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Home</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1" href="#">Guardian</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Safety</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Vault</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant p-sm hover:bg-surface-container rounded-full transition-colors">notifications</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">JD</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 max-w-7xl mx-auto px-margin-mobile md:px-xl">
+<!-- Header & Progress Overview -->
+<section class="mb-xl grid grid-cols-1 lg:grid-cols-12 gap-lg items-end">
+<div class="lg:col-span-7">
+<h1 class="font-display-lg text-display-lg mb-xs">Self Defence Hub</h1>
+<p class="text-on-surface-variant font-body-lg">Build the confidence to navigate any environment with precision and grace.</p>
+</div>
+<div class="lg:col-span-5 bg-white p-lg rounded-xl card-shadow border border-outline-variant/30">
+<div class="flex justify-between items-center mb-md">
+<span class="font-label-md text-label-md text-secondary">Personal Safety Track</span>
+<span class="font-label-md text-label-md text-primary">Level 4: Advanced Situational</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden mb-sm">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 68%;"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>12/18 Lessons Completed</span>
+<span>68% Complete</span>
+</div>
+</div>
+</section>
+<!-- Featured Lesson Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg mb-xxl">
+<!-- Main Video Player -->
+<div class="lg:col-span-8 group relative rounded-[2.5rem] overflow-hidden card-shadow bg-surface-container-highest">
+<div class="aspect-video relative overflow-hidden">
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10"></div>
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<button class="w-20 h-20 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-2xl hover:scale-110 transition-transform text-primary">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A professional and high-quality cinematographic frame of a woman practicing a palm-strike self-defense move in a brightly lit, minimalist training studio. The lighting is soft and warm with peach and pink accents, creating an empowering and safe atmosphere. The background is slightly blurred, focusing on her focused expression and precise form. The style is modern, premium, and instructional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzLXoNm3ppOPdOko8lO9gtee7PGb6s44eMQsX5pYRryBJGQjfkovvcAxaFKFwper70owwP1ibBe3OPW2huCK2dTqWUx959yVgjyPGsUA8NW15tC99EYZZVGGkuqPGZjvRIvhtK1LE8Bg7X_Is1qtDljMbNRSLbV287EUbmpEdNgjHFYVJU_lQqeJugP3oZiE-3ocFuXSHwxp-byn3-fApeOLUJcNfTD1UIiVn9739G44Juxztjqyzs6UmDg3yoOb-YbFs9L_mgYBol"/>
+<!-- Overlays -->
+<div class="absolute bottom-0 left-0 right-0 p-lg bg-gradient-to-t from-black/60 to-transparent z-20 text-white">
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-md py-1 rounded-full bg-primary-container text-on-primary-container text-label-sm font-label-sm">Lesson of the Day</span>
+<span class="text-label-sm font-label-sm opacity-80">14 min • Intermediate</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg">Escaping a Wrist Grab: The Leverage Principle</h2>
+</div>
+</div>
+</div>
+<!-- Focus Areas -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<div class="bg-white p-lg rounded-[2rem] card-shadow flex-1 border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">category</span>
+                        Focus Areas
+                    </h3>
+<div class="space-y-sm">
+<button class="w-full flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<span class="font-label-md text-on-surface">Escape Techniques</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">work</span>
+</div>
+<span class="font-label-md text-on-surface">Workplace Safety</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined">train</span>
+</div>
+<span class="font-label-md text-on-surface">Public Transport</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<span class="font-label-md text-on-surface">Situational Awareness</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Quick AI Assist CTA -->
+<div class="bg-primary-container p-lg rounded-[2rem] text-on-primary-container relative overflow-hidden group cursor-pointer shadow-lg hover:shadow-xl transition-all">
+<div class="relative z-10">
+<span class="text-label-sm font-label-sm bg-white/20 px-md py-1 rounded-full backdrop-blur-sm mb-md inline-block">Pro Tip</span>
+<p class="font-title-lg text-title-lg leading-tight mb-md">"The best self-defense is not being there. Trust your intuition."</p>
+<div class="flex items-center gap-xs font-label-md">
+                            Ask Angel AI
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<div class="absolute top-[-20px] right-[-20px] w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+</div>
+</div>
+</section>
+<!-- Quick Drills Section -->
+<section class="mb-xxl">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Quick Drills</h2>
+<p class="text-on-surface-variant font-label-md">60-second micro-learning sessions for daily habit building.</p>
+</div>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+                    View All Drills <span class="material-symbols-outlined">arrow_outward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Drill Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-md card-shadow border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A woman in modern athletic wear demonstrates a quick 'de-escalation' stance in a minimalist light-filled hallway. The scene is shot with a warm, soft-focus aesthetic consistent with high-end lifestyle photography. The color palette features cream, soft peach, and hints of muted rose. The atmosphere is calm, controlled, and educational." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeJPCvXVrPYpEUqk5coCpRhVE6YwgKdfsFx3bclWaAvOuwQHxi7noFSQu2SDwkNEpIOKp3Y8T1ThoqLIPsdEKrs2u8T_v4rr_YQPZGOYKmXKv2rljVppBsteKqrmHcplqUpnBYNxYNgd9mYPu4VnRNw_cGVf4XBRXL7fgqQHTL8WVO3AkanxojGI1Xg-IPQr8t4t_xHBEosIe0cRvG9fzxLGMj8uiS4QF9EyVWLewNvlrBvQ01WO8lDNLRT_ptt0bQVGR_YO7I5cJm"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-md text-white">
+<div class="flex items-center gap-xs mb-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-sm">1:20</span>
+</div>
+<h4 class="font-label-md text-label-md line-clamp-2">Boundary Setting Phrases</h4>
+</div>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-sm p-sm rounded-full shadow-sm text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Drill Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-md card-shadow border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An instructional close-up of hands demonstrating a 'breakaway' wrist technique. The hands are brightly lit with clean studio lighting, and the background is a soft beige color. The visual style is premium and educational, emphasizing technique and clarity. The color palette follows the brand's warm cream and soft coral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMZsQOXFOindvRsKBlDRmfP7q0cmWdnetTGgrSfC1qq0KRPwVLbpqCuzrp_0zMMKne63MkP1MwwNuT06dDJTscYNC319Nd4395X7NArNxr5LHfKtCj-9qLI1LHaJUUoeQFmSlabRDysztUncq4PW_65XDLsNtJTlvV5GbgnmOHf7o1IkXkmEOV97mbNZir3LMej4AIzfmEonWYdYxeN20pw47Pl3k_jcw8rhmw7GA6fMY8SgLRjingMMjPasmaqE_oZjnYV8V3sZQQ"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-md text-white">
+<div class="flex items-center gap-xs mb-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-sm">0:45</span>
+</div>
+<h4 class="font-label-md text-label-md line-clamp-2">Quick Release: Soft Grab</h4>
+</div>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-sm p-sm rounded-full shadow-sm text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Drill Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-md card-shadow border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A woman walking confidently with an alert posture in a modern urban park setting during the golden hour. The sunlight creates a warm, empowering glow. The focus is on her head position and eye contact. The image quality is crisp and high-fidelity, using a palette of soft coral and deep burgundy accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO0TgDcPcQYoaI22zl3N9CyFqy09mgur1HuIZHBPeRYrvW2kcPjn0e0uJNiBxNtYXYhqauGC2LZ0uT7EXZ2Zk_0cJKtRcX7UkLCpYy4outamPG3Qf0wwWWsZlGdjL1q08HsCUQsI4dqNOXHrTghgW9uP2G75Xdvzx9_dE1WIJZF1R6Gx_tGxGs2YjzEwwxwvIo0Lam5_I8CapFIHZa4dDmnfBCX0W0TMdpUxsCNjEmqGj01zIDWa8cpO4v7quWeoiiXZMzeVBcM6Rt"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-md text-white">
+<div class="flex items-center gap-xs mb-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-sm">1:05</span>
+</div>
+<h4 class="font-label-md text-label-md line-clamp-2">The 'Confidence Walk' Habit</h4>
+</div>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-sm p-sm rounded-full shadow-sm text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Drill Card 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative mb-md card-shadow border border-outline-variant/20">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A woman sitting on a subway train with a mindful, alert expression, subtly scanning her surroundings. The lighting is clean and balanced, avoiding any dark or scary undertones. The scene emphasizes awareness and preparedness in a public transport setting. Soft peach and white tones dominate the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQmG-qsZOyT_peoFucjvV758hbgM9jhe0MyuoRw0Sq-JPo1rMrb0LQwD8zvvkEYNK_TgPzYLKgRW7VvsKbLx260gOMY9Foam7IJSrDlxVrbO3wpB8EEJIGAcoxto8qbRoi31dE0uqCmE3LeSXMkWEgffZyB81rDG_-XXm2aNH0NO3ZOKeFbz46JUS6cgwNVWtfLP7f6JK2lEvlbh_kotsQfr0IhJsSiNedXJFsD84LK2mTYyamaT2cpqBlhn4ShGiDCcsCRRrhbC5E"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute bottom-0 left-0 right-0 p-md text-white">
+<div class="flex items-center gap-xs mb-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-sm">1:30</span>
+</div>
+<h4 class="font-label-md text-label-md line-clamp-2">Seated Awareness: Public Transit</h4>
+</div>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-sm p-sm rounded-full shadow-sm text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Learning Path - Interactive Tracker -->
+<section class="bg-surface-container/50 rounded-[3rem] p-xxl border border-outline-variant/20">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-xxl">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-md">Your Growth Journey</h2>
+<p class="text-on-surface-variant font-body-lg">Each milestone builds upon the last. Complete challenges to unlock the Guardian Badge.</p>
+</div>
+<div class="relative">
+<!-- Progress Line -->
+<div class="absolute left-[24px] top-0 bottom-0 w-[2px] bg-outline-variant md:left-1/2 md:-ml-[1px]"></div>
+<!-- Journey Steps -->
+<div class="space-y-xxl">
+<!-- Step 1: Done -->
+<div class="relative flex items-center md:justify-end">
+<div class="md:w-1/2 md:pr-xl pl-xl md:pl-0">
+<div class="bg-white p-lg rounded-2xl card-shadow border-l-4 border-primary">
+<span class="text-label-sm font-label-sm text-primary bg-primary-fixed px-md py-1 rounded-full mb-sm inline-block">Phase 01</span>
+<h4 class="font-title-lg text-title-lg mb-sm">Mindset &amp; Awareness</h4>
+<p class="text-on-surface-variant text-body-md">Mastering the psychological aspects of personal safety and environmental scanning.</p>
+<div class="flex items-center gap-sm mt-md text-primary font-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Completed
+                                    </div>
+</div>
+</div>
+<div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white shadow-lg z-10 ring-8 ring-background">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="relative flex items-center">
+<div class="md:w-1/2 md:pl-xl pl-xl">
+<div class="bg-white p-lg rounded-2xl card-shadow border-l-4 border-primary-container ring-2 ring-primary-container/20 scale-105">
+<span class="text-label-sm font-label-sm text-on-primary-container bg-primary-container px-md py-1 rounded-full mb-sm inline-block">Active • Phase 02</span>
+<h4 class="font-title-lg text-title-lg mb-sm">Proactive Positioning</h4>
+<p class="text-on-surface-variant text-body-md">Learning how to occupy space, set verbal boundaries, and use body language to deter threats.</p>
+<button class="mt-md w-full py-md bg-primary text-white rounded-full font-label-md hover:bg-on-primary-container transition-colors shadow-md">
+                                        Resume Next Lesson
+                                    </button>
+</div>
+</div>
+<div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-lg z-10 ring-8 ring-background pulse-soft">
+<span class="material-symbols-outlined">pending</span>
+</div>
+</div>
+<!-- Step 3: Locked -->
+<div class="relative flex items-center md:justify-end opacity-60">
+<div class="md:w-1/2 md:pr-xl pl-xl md:pl-0">
+<div class="bg-surface-container-low p-lg rounded-2xl border border-dashed border-outline-variant">
+<span class="text-label-sm font-label-sm text-outline bg-surface-variant px-md py-1 rounded-full mb-sm inline-block">Phase 03</span>
+<h4 class="font-title-lg text-title-lg mb-sm">Physical Escape</h4>
+<p class="text-on-surface-variant text-body-md">Tactical movements for breaking holds and creating the window for escape.</p>
+<div class="flex items-center gap-sm mt-md text-outline font-label-md">
+<span class="material-symbols-outlined">lock</span>
+                                        Unlocks at 75% Progress
+                                    </div>
+</div>
+</div>
+<div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full bg-outline-variant flex items-center justify-center text-outline shadow-lg z-10 ring-8 ring-background">
+<span class="material-symbols-outlined">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-xl px-margin-mobile md:px-xl border-t border-outline-variant dark:border-outline flex flex-col md:flex-row justify-between items-center gap-md bg-surface-container dark:bg-surface-container-highest">
+<div class="flex flex-col items-center md:items-start gap-sm">
+<span class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim">Angel AI</span>
+<p class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim">© 2024 Angel AI. Your Guardian Intelligence.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Safety Resources</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-all" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- FAB for AI Chat -->
+<button class="fixed bottom-lg right-lg w-16 h-16 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group">
+<span class="material-symbols-outlined text-[28px] group-hover:hidden">forum</span>
+<span class="hidden group-hover:block font-label-md">Angel AI</span>
+</button>
+<script>
+        // Micro-interaction for Progress Bar
+        window.addEventListener('load', () => {
+            const progressBar = document.querySelector('.bg-primary.rounded-full');
+            if(progressBar) {
+                setTimeout(() => {
+                    progressBar.style.width = '68%';
+                }, 500);
+            }
+        });
+
+        // Simple parallax effect for cards
+        window.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.card-shadow');
+            const x = (window.innerWidth / 2 - e.pageX) / 100;
+            const y = (window.innerHeight / 2 - e.pageY) / 100;
+            
+            cards.forEach(card => {
+                card.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body></html>

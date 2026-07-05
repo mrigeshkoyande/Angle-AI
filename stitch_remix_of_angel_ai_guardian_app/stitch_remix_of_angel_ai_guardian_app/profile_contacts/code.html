@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Profile &amp; Guardian Contacts | Angel AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c99475",
+                    "secondary": "#94483f",
+                    "background": "#fff8f7",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f7",
+                    "outline": "#887175",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "on-primary-fixed": "#3f0018",
+                    "secondary-container": "#ff9f93",
+                    "on-secondary-container": "#79332c",
+                    "primary-fixed": "#ffd9e0",
+                    "surface-container-low": "#fff0f1",
+                    "surface-dim": "#e9d5d8",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#23191b",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecee",
+                    "surface-container-highest": "#f1dee0",
+                    "surface-tint": "#a33759",
+                    "on-secondary-fixed": "#3d0604",
+                    "surface-variant": "#f1dee0",
+                    "inverse-surface": "#392d30",
+                    "inverse-primary": "#ffb1c2",
+                    "on-tertiary-container": "#522d15",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "tertiary": "#805439",
+                    "primary": "#a33759",
+                    "tertiary-fixed": "#ffdbc8",
+                    "on-tertiary-fixed": "#311301",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "surface-container-high": "#f7e3e6",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "surface-container": "#fde9ec",
+                    "on-surface-variant": "#554245",
+                    "on-primary-container": "#6e0a32",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#23191b",
+                    "secondary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#f57799",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc0c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xxl": "48px",
+                    "gutter-mobile": "16px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        vertical-align: middle;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .safe-area-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      body {
+        background-color: #fff8f7; /* Matching Brand Cream */
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar (Shared Component) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 backdrop-blur-xl bg-background/80">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Angel AI</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container hover:opacity-80 transition-opacity cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A close-up high-resolution portrait of a sophisticated young woman with a serene expression, softly lit by golden hour sunlight. She is positioned against a clean, minimalist studio background in warm cream tones. The photography style is professional, editorial, and polished, reflecting a premium lifestyle brand aesthetic with soft focus on the edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5vB3h2PqKO6hIlhh5mCE-Max5WjAFP0pHDo0vefHjIAya6yYfq40NragHn1JZnA6s28zoR_bbz2NezmVRprCJdeAtusS2JxzoXpaPQyYC-ViCSQL9k9pyt5ji_An955ULylAjPU2K-Z9ueHqx6XcMtxR3eA7LSMCZu2cJ_rcsjNFcwzeepMn9xmmkxhbnU86o4NNNvwLVXnISyTK6YJjZ6DXbQxb_WuzktoI3MJvTwKNBG1R4yy7hmA"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-2xl mx-auto space-y-8">
+<!-- Profile Header Section -->
+<section class="text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="relative inline-block">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a woman with a confident and kind smile, set in a brightly lit modern office environment with soft architectural lines. The color palette features soft peach, cream, and rose pink highlights, matching a luxury tech brand's visual identity. High-quality lighting highlights the texture of her hair and the warmth in her eyes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbBdL8kl2ExIZjxJsJJoDfRlOb6IXnrJcc8nDCZB6mr4r56Hp4fXph4TL7rvdvunFau2BLEVwz_UdaC7FZU0aKCMCligaulf5_0t5eSBtGhv-ONnTC6uKGWO2wxdqksfUhsc-NPy_ZL3nn94QNTTchOxJgh69eUvaglnqbfGiNlZYqNN3rVm2gGZ-fuJduhLBE2S4cVK2AwZIiyuri9pwmDBdb3PSy8pne4YKsw1exGoUCm-85hz9dnw"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-white rounded-full p-2 shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+</div>
+<h2 class="mt-4 font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Elena Rodriguez</h2>
+<p class="text-on-surface-variant font-label-md">Premium Guardian Member</p>
+</section>
+<!-- Emergency Contacts Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Emergency Contacts</h3>
+<p class="text-label-sm text-on-surface-variant">Your primary safety circle</p>
+</div>
+<button class="flex items-center gap-1 text-primary font-label-md hover:underline">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_add">person_add</span>
+<span>Add Contact</span>
+</button>
+</div>
+<div class="grid gap-3">
+<!-- Contact Card 1 -->
+<div class="bg-white rounded-xl p-4 flex items-center justify-between shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-surface-container">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed font-bold">
+                            MA
+                        </div>
+<div>
+<p class="font-label-md text-on-surface">Marcus Aurelius</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-secondary-container/20 text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Partner</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<span class="text-[10px] text-on-surface-variant font-medium">Live Tracking</span>
+</div>
+</div>
+<!-- Contact Card 2 -->
+<div class="bg-white rounded-xl p-4 flex items-center justify-between shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-surface-container">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed font-bold">
+                            SL
+                        </div>
+<div>
+<p class="font-label-md text-on-surface">Sarah Lopez</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-tertiary-container/20 text-on-tertiary-container text-[10px] font-bold uppercase tracking-wider">Sister</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<span class="text-[10px] text-on-surface-variant font-medium">Off</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Profile Settings Section -->
+<section class="space-y-4">
+<h3 class="font-title-lg text-title-lg text-on-surface">Account Settings</h3>
+<div class="bg-white rounded-2xl overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border border-surface-container">
+<!-- Setting Item: Privacy -->
+<button class="w-full flex items-center justify-between px-5 py-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</div>
+<div class="text-left">
+<p class="font-label-md text-on-surface">Privacy</p>
+<p class="text-label-sm text-on-surface-variant">Manage data sharing &amp; AI history</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-5"></div>
+<!-- Setting Item: Security -->
+<button class="w-full flex items-center justify-between px-5 py-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<div class="text-left">
+<p class="font-label-md text-on-surface">Security</p>
+<p class="text-label-sm text-on-surface-variant">Biometrics, Passcodes, Two-Factor</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-5"></div>
+<!-- Setting Item: Notifications -->
+<button class="w-full flex items-center justify-between px-5 py-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="text-left">
+<p class="font-label-md text-on-surface">Notifications</p>
+<p class="text-label-sm text-on-surface-variant">Alert tones, SMS, and Push rules</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-5"></div>
+<!-- Setting Item: App Theme -->
+<button class="w-full flex items-center justify-between px-5 py-4 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+</div>
+<div class="text-left">
+<p class="font-label-md text-on-surface">App Theme</p>
+<p class="text-label-sm text-on-surface-variant">Light mode (Active)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="pt-4">
+<button class="w-full h-14 flex items-center justify-center gap-2 rounded-2xl bg-error-container text-on-error-container font-label-md active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </button>
+<p class="mt-6 text-center text-label-sm text-outline">Angel AI v2.4.1 (Guardian Build)</p>
+</section>
+</main>
+<!-- Bottom Nav Bar (Shared Component) -->
+<nav class="fixed bottom-6 left-5 right-5 z-50 flex justify-around items-center h-20 px-2 bg-surface/90 backdrop-blur-lg rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm mt-1">Home</span>
+</a>
+<!-- Guardian -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
+<span class="text-label-sm font-label-sm mt-1">Guardian</span>
+</a>
+<!-- Safety -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="text-label-sm font-label-sm mt-1">Safety</span>
+</a>
+<!-- Vault -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_lock">folder_check</span>
+<span class="text-label-sm font-label-sm mt-1">Vault</span>
+</a>
+<!-- Profile (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-label-sm font-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-95');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-95');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-95');
+            });
+        });
+
+        // Toggle Switch Effect (Visual Only)
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const label = e.target.closest('div').querySelector('span');
+                if (label) {
+                    label.innerText = e.target.checked ? 'Live Tracking' : 'Off';
+                    label.classList.toggle('text-primary', e.target.checked);
+                    label.classList.toggle('text-on-surface-variant', !e.target.checked);
+                }
+            });
+        });
+    </script>
+</body></html>

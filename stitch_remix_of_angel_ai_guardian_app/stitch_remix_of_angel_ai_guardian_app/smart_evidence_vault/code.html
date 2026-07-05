@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Smart Evidence Vault | Angel AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c99475",
+                    "secondary": "#94483f",
+                    "background": "#fff8f7",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f7",
+                    "outline": "#887175",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "on-primary-fixed": "#3f0018",
+                    "secondary-container": "#ff9f93",
+                    "on-secondary-container": "#79332c",
+                    "primary-fixed": "#ffd9e0",
+                    "surface-container-low": "#fff0f1",
+                    "surface-dim": "#e9d5d8",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#23191b",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecee",
+                    "surface-container-highest": "#f1dee0",
+                    "surface-tint": "#a33759",
+                    "on-secondary-fixed": "#3d0604",
+                    "surface-variant": "#f1dee0",
+                    "inverse-surface": "#392d30",
+                    "inverse-primary": "#ffb1c2",
+                    "on-tertiary-container": "#522d15",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "tertiary": "#805439",
+                    "primary": "#a33759",
+                    "tertiary-fixed": "#ffdbc8",
+                    "on-tertiary-fixed": "#311301",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "surface-container-high": "#f7e3e6",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "surface-container": "#fde9ec",
+                    "on-surface-variant": "#554245",
+                    "on-primary-container": "#6e0a32",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#23191b",
+                    "secondary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#f57799",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc0c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xxl": "48px",
+                    "gutter-mobile": "16px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FFF7CD; /* Brand Peach Background as requested */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .vault-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface antialiased min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 backdrop-blur-xl bg-background/80">
+<div class="flex items-center gap-4">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-title-lg font-bold text-primary">Angel AI</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary-container/20">
+<img class="w-full h-full object-cover" data-alt="A professional high-end studio portrait of a woman with a confident expression, soft lighting highlighting her features. The aesthetic is clean and modern, set against a warm, peach-toned studio backdrop that matches a sophisticated tech brand palette. High-resolution photography with a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLDnqe2yXadrX-G15VNVwDq32Qtw-rG1cFMSqFf6N40AKwEg2K0jaiqJwR1fwTs8qBkxoLNs4C6lIU05d7g7P4UpmaN-bGqSsnqhp77ontGs1IErOA8JCJDFDxLUCgytDHZt7wncCEhpF_INfsl-9rf7uQ3LOl_tcoBlbu81LKExQDOeIRmujzDMUtkb8RJwkLoiLswTZK7bJZy-NF2JvkHDBqi1yLLAnHzxvsjuj7cOQV2vzGvOjQAQ"/>
+</div>
+</header>
+<main class="mt-20 px-margin-mobile">
+<!-- Status & Encryption Overview -->
+<section class="mb-lg">
+<div class="glass-card rounded-[24px] p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Vault Secure</h2>
+<p class="text-label-md font-label-md text-on-surface-variant flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="cloud_done">cloud_done</span>
+                            Syncing: 2 minutes ago
+                        </p>
+</div>
+<div class="flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full border border-green-200">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-label-sm font-bold uppercase tracking-wider">Encrypted</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-6">
+<div class="bg-surface-container-low rounded-xl p-4">
+<p class="text-label-sm font-label-sm text-outline mb-1">Total Storage</p>
+<p class="text-title-lg font-bold text-primary">12.4 GB</p>
+<div class="w-full bg-outline-variant h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full w-2/3"></div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4">
+<p class="text-label-sm font-label-sm text-outline mb-1">Items Secured</p>
+<p class="text-title-lg font-bold text-primary">1,204</p>
+<p class="text-[10px] text-tertiary mt-2">Auto-backup active</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Folder Grid -->
+<section class="mb-lg">
+<h3 class="text-label-md font-label-md text-on-surface-variant mb-4 px-1">Library</h3>
+<div class="vault-grid">
+<!-- Photos -->
+<div class="bg-white rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group active:scale-95 transition-transform">
+<div class="w-14 h-14 bg-primary-container/20 rounded-full flex items-center justify-center mb-3 text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="photo_library">photo_library</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Photos</span>
+<span class="text-label-sm text-outline">842 files</span>
+</div>
+<!-- Videos -->
+<div class="bg-white rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group active:scale-95 transition-transform">
+<div class="w-14 h-14 bg-secondary-container/20 rounded-full flex items-center justify-center mb-3 text-secondary">
+<span class="material-symbols-outlined text-[32px]" data-icon="videocam">videocam</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Videos</span>
+<span class="text-label-sm text-outline">45 files</span>
+</div>
+<!-- Audio -->
+<div class="bg-white rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group active:scale-95 transition-transform">
+<div class="w-14 h-14 bg-tertiary-container/20 rounded-full flex items-center justify-center mb-3 text-tertiary">
+<span class="material-symbols-outlined text-[32px]" data-icon="mic">mic</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Audio</span>
+<span class="text-label-sm text-outline">128 clips</span>
+</div>
+<!-- Emergency Logs -->
+<div class="bg-white rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group active:scale-95 transition-transform">
+<div class="w-14 h-14 bg-error-container/40 rounded-full flex items-center justify-center mb-3 text-error">
+<span class="material-symbols-outlined text-[32px]" data-icon="emergency_share">emergency_share</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Logs</span>
+<span class="text-label-sm text-outline">32 events</span>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="mb-xxl">
+<div class="flex justify-between items-center mb-4 px-1">
+<h3 class="text-label-md font-label-md text-on-surface-variant">Recent Evidence Timeline</h3>
+<button class="text-primary text-label-sm font-bold">View All</button>
+</div>
+<div class="space-y-4">
+<!-- Timeline Item 1 -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-primary ring-4 ring-primary-container/30"></div>
+<div class="w-0.5 h-full bg-primary/20 mt-1"></div>
+</div>
+<div class="flex-1 pb-6">
+<div class="glass-card rounded-2xl p-4 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="text-label-sm font-bold text-primary">Emergency Audio Log</span>
+<span class="text-[10px] text-outline font-mono">14:23 • Oct 12</span>
+</div>
+<p class="text-body-md mt-2 text-on-surface">Automatically captured during 'Yellow' alert activation.</p>
+<div class="mt-3 flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+<span class="text-label-sm">5th Ave, New York, NY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<div class="w-0.5 h-full bg-primary/20 mt-1"></div>
+</div>
+<div class="flex-1 pb-6">
+<div class="glass-card rounded-2xl p-4 shadow-sm">
+<div class="flex justify-between items-start">
+<span class="text-label-sm font-bold text-secondary">Photo Sequence</span>
+<span class="text-[10px] text-outline font-mono">23:05 • Oct 11</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-3">
+<div class="aspect-square rounded-lg bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover opacity-60" data-alt="A blurred nighttime street scene with neon lights reflecting off wet pavement, suggesting motion and urgency. Minimalist photography style with deep shadows and vibrant pink and orange highlights, maintaining a sophisticated guardian aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ZxwTYmVnTAsjCaWYxAaRWhKcYAp_lWUS--ErBZhnLThGUQ8UFsIt35fH43pgEdH-LB5cXXMyj24bwnwyDPfd2z5GZ_huplzlYBnFujRDlGz4yUSSqZIiFMCaOn9U8dnXTB_XlN00jfPL3dtqVQQcK4v2Gb6gfWXqQrbui8JbCaSza1m_91JUkddfKjBBWWrVRZLU2h9f_T9IRLfdx_cIAjj_H3mL2mNRVleKHotb46WjR93IVpiECQ"/>
+</div>
+<div class="aspect-square rounded-lg bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover opacity-60" data-alt="Close up of a smart lock or security interface glowing with a soft white light in a dark environment. High-tech, minimalist focus with clean lines and soft-tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHpYmGWycfc9eIs-qxWFMv0656nR2npGBH73bQl74RAAQ7IagvDMwq0hY_lAzTyueoLt7sgL0F-5k1dTGiGS-ouqrFAXxc_qP0tewziouyWbs7TcbQn3MpV_dLNx6vO5_0OyR5PXq25DSad9F_xCi18K71Y6OqLcE9FZHHxdFoCdaKYyA6PZ89MwtwPWpL5HKDQi9DxNVpl8vlWTP2sqPSZztmsbZBb1T003Ln08h3jimbqZQtDPxGkw"/>
+</div>
+<div class="aspect-square rounded-lg bg-primary-container/20 flex items-center justify-center">
+<span class="text-label-sm font-bold text-primary">+4</span>
+</div>
+</div>
+<div class="mt-3 flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+<span class="text-label-sm">Lower East Side, NY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Upload FAB Action -->
+<div class="fixed bottom-32 left-margin-mobile right-margin-mobile z-40">
+<button class="w-full h-14 bg-primary-container text-white rounded-full flex items-center justify-center gap-3 shadow-[0px_8px_30px_rgba(245,119,153,0.3)] active:scale-95 transition-transform font-bold text-body-md">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+            Upload Evidence
+        </button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-5 right-5 z-50 flex justify-around items-center h-20 px-2 bg-surface/90 backdrop-blur-lg rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)]">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<!-- Guardian -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
+<span class="text-label-sm font-label-sm">Guardian</span>
+</a>
+<!-- Safety -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="text-label-sm font-label-sm">Safety</span>
+</a>
+<!-- Vault (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="folder_lock" style="font-variation-settings: 'FILL' 1;">folder_check</span>
+<span class="text-label-sm font-label-sm">Vault</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline p-2 hover:bg-primary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for folder cards
+        document.querySelectorAll('.vault-grid > div').forEach(card => {
+            card.addEventListener('click', () => {
+                const folderName = card.querySelector('.text-on-surface').innerText;
+                console.log(`Navigating to ${folderName}...`);
+                // Add a ripple effect or transition here
+            });
+        });
+
+        // Simulating the "Upload" button success
+        const uploadBtn = document.querySelector('button.bg-primary-container');
+        uploadBtn.addEventListener('click', () => {
+            uploadBtn.innerHTML = `
+                <span class="material-symbols-outlined animate-spin" data-icon="sync">sync</span>
+                Preparing Secure Link...
+            `;
+            setTimeout(() => {
+                uploadBtn.innerHTML = `
+                    <span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+                    Upload Evidence
+                `;
+            }, 2000);
+        });
+    </script>
+</body></html>

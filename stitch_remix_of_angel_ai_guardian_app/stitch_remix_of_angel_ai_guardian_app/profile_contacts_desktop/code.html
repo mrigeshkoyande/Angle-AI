@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Angel AI | Profile &amp; Guardian Circle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .sos-glow {
+            box-shadow: 0px 0px 20px rgba(245, 119, 153, 0.3);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#a33759",
+                        "on-primary-container": "#6e0a32",
+                        "inverse-primary": "#ffb1c2",
+                        "secondary": "#94483f",
+                        "on-tertiary-fixed": "#311301",
+                        "on-tertiary-container": "#522d15",
+                        "secondary-container": "#ff9f93",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#554245",
+                        "outline": "#887175",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#392d30",
+                        "surface-container-highest": "#f1dee0",
+                        "background": "#fff8f7",
+                        "outline-variant": "#dbc0c4",
+                        "on-secondary-fixed": "#3d0604",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#805439",
+                        "primary-fixed-dim": "#ffb1c2",
+                        "surface-dim": "#e9d5d8",
+                        "tertiary-container": "#c99475",
+                        "surface-container-low": "#fff0f1",
+                        "on-primary-fixed-variant": "#841e41",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffd9e0",
+                        "secondary-fixed": "#ffdad5",
+                        "on-surface": "#23191b",
+                        "tertiary-fixed": "#ffdbc8",
+                        "surface-container": "#fde9ec",
+                        "primary": "#a33759",
+                        "tertiary-fixed-dim": "#f3ba99",
+                        "surface-variant": "#f1dee0",
+                        "on-tertiary-fixed-variant": "#653d24",
+                        "surface": "#fff8f7",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#76312a",
+                        "on-primary-fixed": "#3f0018",
+                        "on-background": "#23191b",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "inverse-on-surface": "#ffecee",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#f7e3e6",
+                        "surface-bright": "#fff8f7",
+                        "primary-container": "#f57799",
+                        "on-secondary-container": "#79332c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px",
+                        "2xl": "20px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xxl": "48px",
+                        "margin-mobile": "20px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "unit": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-xl py-md">
+<div class="flex items-center gap-xl">
+<span class="font-title-lg text-title-lg font-bold text-primary">Angel AI</span>
+<div class="hidden md:flex gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Guardian</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Safety</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Vault</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="p-1 px-3 rounded-full bg-primary/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">shield_lock</span>
+<span class="text-label-sm font-label-sm text-primary">System Secure</span>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional and warm close-up portrait of a modern woman with a friendly expression. The photograph is shot in a bright, airy studio with soft, warm lighting that complements the cream and rose pink aesthetic of the app. She has a look of confidence and peace, representing the empowered user of a safety guardian AI. High-end lifestyle photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7p6rrmyf_vOYqypb_Jl3gdjNfQv1_OQKjvP2vOfbjprf6x7tGVCDYYz62X97IHVWRllPQVA13lrr2KKleA6hQsigkFJdCnxheddvj0dVqcj7jzaefhBrFEHEJSEoTBmFEgIEYU0GTElBftEuX42U-A_w-ooQ5Pu_MRmF1ak9Ie-pq7fp8BGwwSdbU1PRbn3xZhsWwoT4taq7IZVh3xdVCZYAE_jsjx-MghWtGUVRQigUebinjlQ4FacHmUvSfvmrk6bzZjZtBO4Wl"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-xxl px-margin-mobile md:px-xl max-w-7xl mx-auto">
+<!-- Profile Header Section -->
+<section class="mb-xl">
+<div class="relative w-full h-48 md:h-64 rounded-2xl overflow-hidden mb-[-48px] shadow-sm">
+<div class="w-full h-full bg-cover bg-center" data-alt="A serene and abstract background featuring soft gradients of rose pink, coral, and cream. The texture is smooth and fluid, resembling silk or light-refracted glass. The lighting is ethereal and bright, creating a calming, high-end tech atmosphere that aligns with the guardian intelligence persona. No text or icons." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCgucQAr5ggV3RU3g2BV2GDpC_AujBBHJaWrKY9F8eWYEgf8WI4hvaDwXES9DINsAZof0zIHZvYsILAocMMiG_RDHrHb4QimuYnEIqNyZw5kQufUWTW80gD2Nim0a602V6AfhO4wP22zzAiHDjDLcZUZ3ELVjItZInIPBmjpPf8nM-CWpDA3nY-tp93kUNrI0jkrtAQ3hsyAfS3IQ2-zYuBn70OzZjFAg2IHy9uq3YCch4T8-l_r95h6yUmLPnCDfF36PbsCS739-2')"></div>
+</div>
+<div class="relative z-10 px-lg flex flex-col md:flex-row items-end gap-md md:gap-xl">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-2xl border-4 border-surface bg-surface overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="A professional and warm close-up portrait of a modern woman with a friendly expression. The photograph is shot in a bright, airy studio with soft, warm lighting that complements the cream and rose pink aesthetic of the app. She has a look of confidence and peace, representing the empowered user of a safety guardian AI. High-end lifestyle photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB71c2a9P_9cocbCFTNeZEQoEVyVel80S0yepS5swXly2Bs7adB1y_bhXCGjll8IabxeG8aVyfJs4UzjZZ9ikVcMDENTVUxjA2ft9cjudurBOISuKfoKxKKUROYrJuUhWSAcMliOhhxgRSEnvjISOhK4Ya49F40p9yzV1EpKyZ93pVbVeVj7s2gOI6K9p9rKH2GJz9IR7cNShxj2ZH53MPNV3MYcxCAM96P3E5FNlaQdFtvdxJN1JYmyR0lRIVRghOmCcPJo6s4H44l"/>
+</div>
+<div class="flex-1 pb-4">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Elena Rodriguez</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Premium Guardian Member since Jan 2024</p>
+</div>
+<div class="flex gap-sm pb-4">
+<button class="px-lg h-12 rounded-full border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">edit</span> Edit Profile
+                    </button>
+<button class="px-lg h-12 rounded-full bg-primary text-white font-label-md hover:opacity-90 transition-all shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">share</span> Share Status
+                    </button>
+</div>
+</div>
+</section>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Settings List -->
+<div class="lg:col-span-4 space-y-lg">
+<div class="glass-card rounded-2xl p-lg">
+<h2 class="font-title-lg text-title-lg text-on-surface mb-md">Account Settings</h2>
+<nav class="space-y-sm">
+<a class="flex items-center justify-between p-md rounded-xl bg-primary-container/10 text-primary transition-all" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md">Personal Information</span>
+</div>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-all group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">shield</span>
+<span class="font-label-md text-on-surface-variant group-hover:text-on-surface">Security &amp; Privacy</span>
+</div>
+<span class="material-symbols-outlined text-sm text-outline-variant">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-all group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">notifications</span>
+<span class="font-label-md text-on-surface-variant group-hover:text-on-surface">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-sm text-outline-variant">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-all group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">credit_card</span>
+<span class="font-label-md text-on-surface-variant group-hover:text-on-surface">Billing &amp; Subscription</span>
+</div>
+<span class="material-symbols-outlined text-sm text-outline-variant">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-md rounded-xl hover:bg-surface-container transition-all group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">help_center</span>
+<span class="font-label-md text-on-surface-variant group-hover:text-on-surface">Help &amp; Support</span>
+</div>
+<span class="material-symbols-outlined text-sm text-outline-variant">chevron_right</span>
+</a>
+</nav>
+</div>
+<!-- AI Quick Status -->
+<div class="bg-surface-container-high rounded-2xl p-lg relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-primary uppercase tracking-wider">Angel AI Active</span>
+</div>
+<p class="font-body-md text-on-surface mb-md">"Elena, your Guardian Circle is fully synced. I'm monitoring your route to 'Home' tonight."</p>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+                            View Safety Insights <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="absolute -bottom-4 -right-4 opacity-10">
+<span class="material-symbols-outlined text-9xl">auto_awesome</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Guardian Circle Management -->
+<div class="lg:col-span-8 space-y-lg">
+<div class="glass-card rounded-2xl p-lg">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Guardian Circle</h2>
+<p class="font-body-md text-on-surface-variant">These people are notified in case of an emergency alert.</p>
+</div>
+<button class="bg-primary text-white px-lg h-12 rounded-full flex items-center gap-2 shadow-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">person_add</span> Add New Contact
+                        </button>
+</div>
+<!-- Contact Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Contact 1 -->
+<div class="p-md rounded-2xl bg-white border border-outline-variant hover:border-primary transition-all group">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of an older woman with gentle eyes and graying hair, wearing a soft wool sweater. Soft, warm interior lighting. High-end photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADQ8jlZfYffspBW5FKJ_V8XydKSPagZLT_UKcR6y9RrcSTuV2ouwYTLzlNBZW6GpC0K8fjiG8m67Dluzb-FTYp7l4u21HzZT32YpsIVN1BWgJ8ZVgPc14aroQctpq8d-hEgCjpqW97wzpW_gzoU3AHRPB00a-z5SQquO1ZbBFiBJ3QCqUB8MBuaAxKrbuOzNEzAznZpbe81gbTijea0CCBGKaJOANMgIKpm1yakPZkAMqNF4Ix68Jsnj42HdFWN6sK2Uzl_QCaYAgx"/>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Sarah Rodriguez</h3>
+<p class="font-label-sm text-on-surface-variant">Relationship: Mother</p>
+</div>
+</div>
+<div class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span> Active
+                                </div>
+</div>
+<div class="flex items-center justify-between pt-md border-t border-outline-variant">
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary-container/20 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary-container/20 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">sms</span>
+</button>
+</div>
+<button class="text-on-surface-variant font-label-md hover:text-primary transition-colors flex items-center gap-1">
+                                    Settings <span class="material-symbols-outlined text-sm">settings</span>
+</button>
+</div>
+</div>
+<!-- Contact 2 -->
+<div class="p-md rounded-2xl bg-white border border-outline-variant hover:border-primary transition-all group">
+<div class="flex items-start justify-between mb-md">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young athletic man in his late 20s, smiling warmly. Natural outdoor light, modern lifestyle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKUYvIYgmUxQnFI_Cx7wkXo3hmxm394nH3-X3oJh-7XPTrRiwd0NtiEM1ArY2l0S2WY2XWgtA_ioI5azq4ZMghhXRDir9CXN9kX9A8L5e40yfJaEhlrPFUHYS5-bNMSHnLkPe4mC1mnUVvPnG0LCLOUb6MBVT9-l6GbZGo4Vue01EJqWuOxYlWc23TOjON0K2zwaHEdKo5k8RlMC0b-Dkb0qlMEMVdFfgKKXyodcI8Gy4fr8gq3bxi4w3JuFPugDA1Wx_KwZ6pmDUQ"/>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Mark Thompson</h3>
+<p class="font-label-sm text-on-surface-variant">Relationship: Partner</p>
+</div>
+</div>
+<div class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span> Active
+                                </div>
+</div>
+<div class="flex items-center justify-between pt-md border-t border-outline-variant">
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary-container/20 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-primary-container/20 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">sms</span>
+</button>
+</div>
+<button class="text-on-surface-variant font-label-md hover:text-primary transition-colors flex items-center gap-1">
+                                    Settings <span class="material-symbols-outlined text-sm">settings</span>
+</button>
+</div>
+</div>
+<!-- Contact 3 - Invite Pending -->
+<div class="p-md rounded-2xl bg-surface-container-low border border-dashed border-outline-variant">
+<div class="flex items-start justify-between mb-md opacity-60">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Jessica Chen</h3>
+<p class="font-label-sm text-on-surface-variant">Relationship: Best Friend</p>
+</div>
+</div>
+<div class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full text-xs font-bold">
+                                    Pending
+                                </div>
+</div>
+<div class="flex items-center justify-center pt-md border-t border-outline-variant">
+<button class="text-primary font-label-md hover:underline flex items-center gap-1">
+                                    Resend Invite <span class="material-symbols-outlined text-sm">forward_to_inbox</span>
+</button>
+</div>
+</div>
+<!-- Add Quick Card -->
+<div class="p-md rounded-2xl border-2 border-dashed border-primary-container/40 flex flex-col items-center justify-center text-center py-xl group cursor-pointer hover:bg-primary-container/5 transition-all">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 text-primary flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">add</span>
+</div>
+<p class="font-label-md text-primary">Add Another Guardian</p>
+<p class="text-label-sm text-on-surface-variant px-md">Expand your circle for extra layers of protection.</p>
+</div>
+</div>
+</div>
+<!-- Emergency Protocol Card -->
+<div class="glass-card rounded-2xl overflow-hidden border-l-4 border-error">
+<div class="p-lg flex flex-col md:flex-row items-center gap-lg">
+<div class="w-16 h-16 rounded-full bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="font-title-lg text-title-lg text-on-surface">Emergency SOS Protocol</h3>
+<p class="font-body-md text-on-surface-variant">In case of distress, Angel AI will immediately notify your active Guardian Circle, share live location, and start audio recording.</p>
+</div>
+<button class="px-xl h-14 rounded-full bg-error text-white font-bold text-label-md shadow-lg hover:brightness-110 transition-all flex items-center gap-2">
+                            Configure SOS
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-margin-mobile md:px-xl border-t border-outline-variant bg-surface-container flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-title-lg text-title-lg font-bold text-primary">Angel AI</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Angel AI. Your Guardian Intelligence.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all underline" href="#">Safety Resources</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all underline" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all underline" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all underline" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all underline" href="#">Contact Support</a>
+</div>
+</footer>
+<!-- Interactive Elements Script -->
+<script>
+        // Tab switching logic (Simulated)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.href === '#') e.preventDefault();
+            });
+        });
+
+        // Hover animations for contact cards
+        const cards = document.querySelectorAll('.glass-card, .p-md');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

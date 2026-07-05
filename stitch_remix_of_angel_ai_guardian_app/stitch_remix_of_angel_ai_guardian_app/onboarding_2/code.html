@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Angel AI - Onboarding</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&amp;family=Inter:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        }
+        
+        .pulse-container {
+            animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#c99475",
+                        "secondary": "#94483f",
+                        "background": "#fff8f7",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fff8f7",
+                        "outline": "#887175",
+                        "primary-fixed-dim": "#ffb1c2",
+                        "tertiary-fixed-dim": "#f3ba99",
+                        "on-primary-fixed": "#3f0018",
+                        "secondary-container": "#ff9f93",
+                        "on-secondary-container": "#79332c",
+                        "primary-fixed": "#ffd9e0",
+                        "surface-container-low": "#fff0f1",
+                        "surface-dim": "#e9d5d8",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#23191b",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#ffecee",
+                        "surface-container-highest": "#f1dee0",
+                        "surface-tint": "#a33759",
+                        "on-secondary-fixed": "#3d0604",
+                        "surface-variant": "#f1dee0",
+                        "inverse-surface": "#392d30",
+                        "inverse-primary": "#ffb1c2",
+                        "on-tertiary-container": "#522d15",
+                        "on-primary-fixed-variant": "#841e41",
+                        "error": "#ba1a1a",
+                        "tertiary": "#805439",
+                        "primary": "#a33759",
+                        "tertiary-fixed": "#ffdbc8",
+                        "on-tertiary-fixed": "#311301",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f7",
+                        "surface-container-high": "#f7e3e6",
+                        "on-secondary-fixed-variant": "#76312a",
+                        "surface-container": "#fde9ec",
+                        "on-surface-variant": "#554245",
+                        "on-primary-container": "#6e0a32",
+                        "on-tertiary-fixed-variant": "#653d24",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#23191b",
+                        "secondary-fixed": "#ffdad5",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#f57799",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#dbc0c4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xxl": "48px",
+                        "gutter-mobile": "16px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md overflow-hidden">
+<!-- Top AppBar - Suppression Rule: Task-focused Onboarding usually suppresses full nav -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-transparent">
+<button class="p-2 hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="text-title-lg font-title-lg font-bold text-primary">Angel AI</div>
+<button class="text-label-md font-label-md text-on-surface-variant hover:opacity-80 transition-opacity">
+            Skip
+        </button>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile pt-16 pb-32">
+<!-- Illustration Section with Asymmetric Layout -->
+<div class="relative w-full max-w-sm aspect-square mb-12 flex items-center justify-center">
+<!-- Decorative Circles -->
+<div class="absolute inset-0 pulse-container bg-primary/5 rounded-full scale-110"></div>
+<div class="absolute inset-0 bg-primary/10 rounded-full scale-90"></div>
+<!-- Main Illustration Card -->
+<div class="relative z-10 w-full h-full glass-card rounded-[40px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col">
+<div class="flex-grow relative flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A sophisticated minimalist digital illustration of a woman's hand subtly performing a hidden SOS gesture against a soft cream and rose pink background. The aesthetic is clean and high-end, utilizing soft tech gradients and organic shapes. Warm lighting emphasizes the calm and empowering mood of the safety app, avoiding clinical coldness. Soft shadows and a white surface create a premium lifestyle feel consistent with a modern Guardian Intelligence persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhUiDjRfFoAmnm99HAX3EL5SZkn-hWkrNd_uouBMTVQ4u0rfDsDNnQoY3bWwTwayYGdU6CENAeKnsBFC7jBtxLRjyZN0zy5m7I5I4ZTkbmzebRGhSAyhpAv0nlOHm0VwYz6wcGdau6ta8NYlVS8B9sfGt7HgNx7JCwPpRrOTOvd5Ik4NSTtqFiSjppCpYzOcePCacB4Db2akktW_YgL28KRJm4ypb6zQmena4HD2PObLiYF4oMOrZuGw"/>
+<!-- Floating Indicator Overlay -->
+<div class="absolute bottom-6 left-6 right-6 p-4 glass-card rounded-2xl border border-white/50 shadow-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Hidden SOS</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Triple tap to activate</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Smaller Asymmetric Element (AI Coach Bubble) -->
+<div class="absolute -top-4 -right-2 z-20 w-32 h-32 glass-card rounded-3xl shadow-xl p-3 flex flex-col items-center justify-center text-center animate-bounce duration-[3000ms] ease-in-out">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-on-tertiary-container text-sm">psychology</span>
+</div>
+<p class="text-[10px] font-label-md leading-tight text-on-surface">AI Escape Coach Active</p>
+</div>
+</div>
+<!-- Text Content -->
+<div class="text-center w-full max-w-md">
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface mb-4">Emergency Support</h1>
+<p class="text-body-md font-body-md text-on-surface-variant px-4">
+                Access Hidden SOS and our AI Escape Coach for immediate guidance in stressful situations.
+            </p>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="fixed bottom-0 left-0 w-full px-margin-mobile pb-10 pt-6 bg-gradient-to-t from-background via-background to-transparent safe-area-bottom">
+<div class="flex flex-col items-center gap-8">
+<!-- Progress Indicator -->
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+<div class="w-8 h-2 rounded-full bg-primary transition-all duration-300"></div>
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full h-14 bg-primary-container text-on-primary-container rounded-full font-label-md text-label-md shadow-[0px_8px_30px_rgba(245,119,153,0.15)] flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+                Next
+                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</footer>
+<!-- Subtle Background Shader Overlay -->
+<div class="fixed inset-0 -z-10 opacity-30 pointer-events-none">
+
+</div>
+<script>
+        // Micro-interactions for button and progress dots
+        document.querySelector('button.bg-primary-container').addEventListener('click', function() {
+            // Logic for navigating to next part (3 of 3)
+            console.log('Navigating to Screen 3, Part 3...');
+        });
+
+        // Simple parallax effect for the illustration
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 15;
+            const y = (e.clientY / window.innerHeight - 0.5) * 15;
+            const card = document.querySelector('.relative.z-10');
+            const bubble = document.querySelector('.absolute.-top-4');
+            
+            if (card) card.style.transform = `translate(${x}px, ${y}px)`;
+            if (bubble) bubble.style.transform = `translate(${-x * 1.5}px, ${-y * 1.5}px)`;
+        });
+    </script>
+</body></html>

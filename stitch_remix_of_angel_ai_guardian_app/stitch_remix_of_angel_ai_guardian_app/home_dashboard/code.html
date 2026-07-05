@@ -1,0 +1,318 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Config Rendering -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c99475",
+                    "secondary": "#94483f",
+                    "background": "#fff8f7",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f7",
+                    "outline": "#887175",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "on-primary-fixed": "#3f0018",
+                    "secondary-container": "#ff9f93",
+                    "on-secondary-container": "#79332c",
+                    "primary-fixed": "#ffd9e0",
+                    "surface-container-low": "#fff0f1",
+                    "surface-dim": "#e9d5d8",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#23191b",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecee",
+                    "surface-container-highest": "#f1dee0",
+                    "surface-tint": "#a33759",
+                    "on-secondary-fixed": "#3d0604",
+                    "surface-variant": "#f1dee0",
+                    "inverse-surface": "#392d30",
+                    "inverse-primary": "#ffb1c2",
+                    "on-tertiary-container": "#522d15",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "tertiary": "#805439",
+                    "primary": "#a33759",
+                    "tertiary-fixed": "#ffdbc8",
+                    "on-tertiary-fixed": "#311301",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "surface-container-high": "#f7e3e6",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "surface-container": "#fde9ec",
+                    "on-surface-variant": "#554245",
+                    "on-primary-container": "#6e0a32",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#23191b",
+                    "secondary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#f57799",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc0c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xxl": "48px",
+                    "gutter-mobile": "16px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FFF7CD; /* Cream Background from Brand Identity */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .safe-area-top { padding-top: env(safe-area-inset-top); }
+        .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .sos-pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(245, 119, 153, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(245, 119, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 119, 153, 0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="text-on-surface antialiased overflow-x-hidden">
+<!-- Top App Bar (Shared Component Logic) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 backdrop-blur-xl bg-background/80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Angel AI</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img class="w-full h-auto" data-alt="A close-up portrait of a young woman with a calm and confident expression, styled as a premium lifestyle photography shot. The lighting is warm and natural, suggesting a soft sunset glow. She is framed against a minimalist, clean interior background with neutral beige and soft pink tones, emphasizing a sense of personal security and sophisticated modern living." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvbmm_Dh4Zpoy1nPbpLsqkPP53J8Gs_Vvx9n1Xt-cNECD7PRHgGEKYT_Ue4glWwtniLelQ0TXjKhw1RUfRAmRxSuBuGp3dJ00XrjXrbuInb6FD8ZIQbfkHnQUCO4tfQ2UCkUv3LsO7JqWLnPK1Hpb3cdeKAcVoSu86mbZlr7tW8PtpL3MZ4tPTiQmf74mOsTP8YYZxe9yaHA114Km4dLAbXXOb-jk5zJGK8rw7sFBMSYf9d6ubYoN5xg">
+</div>
+</header>
+<main class="pt-24 pb-40 px-margin-mobile space-y-lg">
+<!-- Greeting Section -->
+<section class="animate-in fade-in slide-in-from-bottom-4 duration-700">
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-on-surface">Good Evening, Elena 👋</h2>
+<p class="text-body-md font-body-md text-on-surface-variant opacity-80">You're being looked after.</p>
+</section>
+<!-- Safety Status Card (Peach/Coral Tonal Depth) -->
+<div class="bg-secondary-container/20 rounded-xl p-md flex items-center justify-between border border-secondary-container/30">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+</div>
+<div>
+<p class="text-label-sm font-label-sm text-on-secondary-container uppercase tracking-wider">Current Location</p>
+<p class="text-body-md font-body-md font-bold text-on-surface">HSR Layout, Sector 2</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full">
+<span class="block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-primary">Guardian ON</span>
+</div>
+</div>
+<!-- Hero Card: Large animated shield illustration -->
+<section class="relative overflow-hidden bg-surface-container-lowest rounded-[20px] p-xl shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<div class="relative z-10 flex flex-col items-center text-center space-y-sm">
+<div class="w-32 h-32 mb-4"><div class="w-full h-full rounded-full bg-green-100 flex items-center justify-center">
+  <span class="material-symbols-outlined text-6xl text-green-600" style="font-variation-settings: &quot;FILL&quot; 1, &quot;wght&quot; 700;">check_circle</span>
+</div></div>
+<h3 class="text-headline-lg-mobile font-headline-lg-mobile text-primary">You're Safe</h3>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-[240px]">Angel AI is actively monitoring your surroundings and biometrics.</p>
+</div>
+<!-- Subtle background decorative element -->
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+</section>
+<!-- Quick Actions Grid -->
+<section>
+<div class="flex justify-between items-end mb-md">
+<h4 class="text-title-lg font-title-lg text-on-surface">Quick Actions</h4>
+<button class="text-label-md font-label-md text-primary">Edit Grid</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Action 1: Hidden SOS -->
+<div class="bg-surface-container-lowest p-md rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:scale-95 transition-transform cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">visibility_off</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface">Hidden SOS</p>
+</div>
+<!-- Action 2: Guardian Mode -->
+<div class="bg-surface-container-lowest p-md rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:scale-95 transition-transform cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary mb-3 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">shield_with_heart</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface">Guardian Mode</p>
+</div>
+<!-- Action 3: Dummy Call -->
+<div class="bg-surface-container-lowest p-md rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:scale-95 transition-transform cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary mb-3 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">call</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface">Dummy Call</p>
+</div>
+<!-- Action 4: Escape Coach -->
+<div class="bg-surface-container-lowest p-md rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:scale-95 transition-transform cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-outline-variant/20 flex items-center justify-center text-outline mb-3 group-hover:bg-outline group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface">Escape Coach</p>
+</div>
+<!-- Action 5: Evidence Vault -->
+<div class="bg-surface-container-lowest p-md rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:scale-95 transition-transform cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary mb-3 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">folder_check</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface">Evidence Vault</p>
+</div>
+<!-- Action 6: Self Defence -->
+<div class="bg-surface-container-lowest p-md rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] hover:scale-95 transition-transform cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary mb-3 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">sports_martial_arts</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface">Self Defence</p>
+</div>
+</div>
+</section>
+<!-- Recent Journey Card -->
+<section class="bg-surface-container-lowest rounded-[20px] p-md shadow-[0px_4px_20px_rgba(0,0,0,0.04)]">
+<h4 class="text-title-lg font-title-lg text-on-surface mb-md">Recent Journey</h4>
+<div class="relative pl-6 space-y-md border-l-2 border-primary/10">
+<div class="relative">
+<span class="absolute -left-[31px] top-1 w-4 h-4 bg-primary rounded-full border-4 border-white"></span>
+<p class="text-label-md font-label-md text-on-surface">Left Office</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">06:45 PM • Whitefield</p>
+</div>
+<div class="relative">
+<span class="absolute -left-[31px] top-1 w-4 h-4 bg-tertiary rounded-full border-4 border-white"></span>
+<p class="text-label-md font-label-md text-on-surface">Metro Transit</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">07:15 PM • MG Road Station</p>
+</div>
+<div class="relative">
+<span class="absolute -left-[31px] top-1 w-4 h-4 bg-primary-container rounded-full border-4 border-white animate-pulse"></span>
+<p class="text-label-md font-label-md text-primary font-bold">Walking Home</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">08:02 PM • Current</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating SOS Button -->
+<div class="fixed bottom-32 right-6 z-[60]">
+<button class="sos-pulse w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center shadow-lg active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: &quot;FILL&quot; 1;">sos</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar (Shared Component Logic) -->
+<nav class="fixed bottom-6 left-5 right-5 z-50 flex justify-around items-center h-20 px-2 bg-surface/90 backdrop-blur-lg rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)]">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<!-- Guardian -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">shield_with_heart</span>
+<span class="text-label-sm font-label-sm">Guardian</span>
+</a>
+<!-- Safety -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="text-label-sm font-label-sm">Safety</span>
+</a>
+<!-- Vault -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">folder_check</span>
+<span class="text-label-sm font-label-sm">Vault</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and subtle scroll behavior
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm');
+            } else {
+                header.classList.remove('shadow-sm');
+            }
+        });
+
+        // Simulating the "SOS Pulse" logic for interactivity
+        const sosBtn = document.querySelector('.sos-pulse');
+        let pressTimer;
+
+        sosBtn.addEventListener('mousedown', () => {
+            pressTimer = window.setTimeout(() => {
+                sosBtn.classList.add('bg-error');
+                alert('Emergency SOS triggered! Notifying guardians and local services...');
+            }, 3000); // 3-second hold to trigger
+        });
+
+        sosBtn.addEventListener('mouseup', () => {
+            clearTimeout(pressTimer);
+        });
+    </script>
+
+
+</body></html>

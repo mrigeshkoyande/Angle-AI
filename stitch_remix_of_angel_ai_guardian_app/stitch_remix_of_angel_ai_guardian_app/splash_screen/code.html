@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Angel AI - Splash Screen</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c99475",
+                    "secondary": "#94483f",
+                    "background": "#fff8f7", // Slightly adjusted from #FFF7CD to match the specific palette provided in config while maintaining cream feel
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f7",
+                    "outline": "#887175",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "on-primary-fixed": "#3f0018",
+                    "secondary-container": "#ff9f93",
+                    "on-secondary-container": "#79332c",
+                    "primary-fixed": "#ffd9e0",
+                    "surface-container-low": "#fff0f1",
+                    "surface-dim": "#e9d5d8",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#23191b",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecee",
+                    "surface-container-highest": "#f1dee0",
+                    "surface-tint": "#a33759",
+                    "on-secondary-fixed": "#3d0604",
+                    "surface-variant": "#f1dee0",
+                    "inverse-surface": "#392d30",
+                    "inverse-primary": "#ffb1c2",
+                    "on-tertiary-container": "#522d15",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "tertiary": "#805439",
+                    "primary": "#a33759",
+                    "tertiary-fixed": "#ffdbc8",
+                    "on-tertiary-fixed": "#311301",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "surface-container-high": "#f7e3e6",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "surface-container": "#fde9ec",
+                    "on-surface-variant": "#554245",
+                    "on-primary-container": "#6e0a32",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#23191b",
+                    "secondary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#f57799",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc0c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xxl": "48px",
+                    "gutter-mobile": "16px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "26px", "fontWeight": "500" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "title-lg": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                    "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Ambient Pulsing Glow for the Shield */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Soft fade-in for content */
+        @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fade-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Background Gradient Transition */
+        .bg-cream-tonal {
+            background: radial-gradient(circle at center, #FFF7CD 0%, #fff8f7 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-cream-tonal text-on-surface antialiased overflow-hidden">
+<!-- Splash Screen Container -->
+<main class="relative h-screen w-full flex flex-col items-center justify-center px-margin-mobile">
+<!-- Background Atmospheric Element (Optional WebGL/Shader reference if available, using CSS here for splash) -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary-container blur-[100px] rounded-full"></div>
+<div class="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-80 h-80 bg-secondary-container blur-[120px] rounded-full opacity-60"></div>
+</div>
+<!-- Central Identity Cluster -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<!-- Logo Placeholder with Glowing Shield Graphic -->
+<div class="relative mb-lg group">
+<!-- Glowing Aura -->
+<div class="absolute inset-0 bg-primary-container rounded-full blur-2xl animate-pulse-glow opacity-30 group-hover:opacity-50 transition-opacity"></div>
+<!-- Shield Icon -->
+<div class="relative w-24 h-24 flex items-center justify-center bg-surface-container-lowest rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)] transition-transform duration-500 hover:scale-105">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'FILL' 1;">
+                        shield_with_heart
+                    </span>
+</div>
+</div>
+<!-- Title & Tagline -->
+<div class="animate-fade-up space-y-xs" style="animation-delay: 0.3s;">
+<h1 class="text-primary font-display-lg text-display-lg tracking-tight">
+                    Angel AI
+                </h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg opacity-80 italic">
+                    Your AI Guardian
+                </p>
+</div>
+</div>
+<!-- Visual Anchor (Bottom) -->
+<div class="absolute bottom-16 w-full flex flex-col items-center animate-fade-up" style="animation-delay: 0.8s;">
+<div class="flex gap-1.5 mb-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style="animation-delay: 0s;"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style="animation-delay: 0.2s;"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-bounce" style="animation-delay: 0.4s;"></span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm tracking-widest uppercase opacity-60">
+                Securely Initializing
+            </span>
+</div>
+<!-- Background Decorative Image (Subtle watermark style) -->
+<div class="absolute inset-0 -z-10 opacity-[0.03] grayscale pointer-events-none">
+<div class="w-full h-full" data-alt="A sophisticated, high-end digital wallpaper featuring abstract, flowing organic lines reminiscent of fine silk or soft marble textures. The aesthetic is clean, minimalist, and deeply calming, using a palette of soft creams, warm whites, and faint rose pinks. The composition conveys a sense of premium security and technological elegance, suitable for a guardian intelligence brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4QghAfxpC14__Iz5AKvZNP2j_RHa2tuN6R-TFtQ-g6a3Bz5MdyoZo6cW8WRrqRgky7ZnFp65gd3pAq6VwLNVhXzrQRZ3NOLc_vFdIbUrdWY9ajMK2PkCAFC2KloltKkc2u5VsOys3ER44PsL2Gh4bcruuocOvMq8lk1xNAc7LR1BsyWO6WEahLbZLk12Rwu9-_m4ndCnEYszYA6_yKORuWiMfvKZYDeUHYaSeklhvV40ephMNX1pG4A')"></div>
+</div>
+</main>
+<!-- Navigation suppression check: This is a Splash Screen (Transactional/Onboarding), so TopAppBar and BottomNavBar from JSON are suppressed. -->
+<script>
+        // Simple Interaction: Click to proceed (Simulation for the prompt context)
+        document.body.addEventListener('click', () => {
+            console.log("Proceeding to next screen...");
+            // In a real app, this would trigger a router push.
+        });
+
+        // Atmosphere Effect: Subtle cursor-following glow (Lightweight micro-interaction)
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.createElement('div');
+            glow.className = 'fixed pointer-events-none w-32 h-32 bg-primary-container/10 rounded-full blur-3xl transition-opacity duration-1000';
+            glow.style.left = `${e.clientX - 64}px`;
+            glow.style.top = `${e.clientY - 64}px`;
+            document.body.appendChild(glow);
+            setTimeout(() => glow.style.opacity = '0', 10);
+            setTimeout(() => glow.remove(), 1000);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dummy Call Setup | Angel AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#a33759",
+                        "on-primary-container": "#6e0a32",
+                        "inverse-primary": "#ffb1c2",
+                        "secondary": "#94483f",
+                        "on-tertiary-fixed": "#311301",
+                        "on-tertiary-container": "#522d15",
+                        "secondary-container": "#ff9f93",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#554245",
+                        "outline": "#887175",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#392d30",
+                        "surface-container-highest": "#f1dee0",
+                        "background": "#fff8f7",
+                        "outline-variant": "#dbc0c4",
+                        "on-secondary-fixed": "#3d0604",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#805439",
+                        "primary-fixed-dim": "#ffb1c2",
+                        "surface-dim": "#e9d5d8",
+                        "tertiary-container": "#c99475",
+                        "surface-container-low": "#fff0f1",
+                        "on-primary-fixed-variant": "#841e41",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffd9e0",
+                        "secondary-fixed": "#ffdad5",
+                        "on-surface": "#23191b",
+                        "tertiary-fixed": "#ffdbc8",
+                        "surface-container": "#fde9ec",
+                        "primary": "#a33759",
+                        "tertiary-fixed-dim": "#f3ba99",
+                        "surface-variant": "#f1dee0",
+                        "on-tertiary-fixed-variant": "#653d24",
+                        "surface": "#fff8f7",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#76312a",
+                        "on-primary-fixed": "#3f0018",
+                        "on-background": "#23191b",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "inverse-on-surface": "#ffecee",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#f7e3e6",
+                        "surface-bright": "#fff8f7",
+                        "primary-container": "#f57799",
+                        "on-secondary-container": "#79332c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xxl": "48px",
+                        "margin-mobile": "20px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "unit": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .active-pill {
+            background-color: #f57799;
+            color: white;
+            box-shadow: 0px 8px 30px rgba(245, 119, 153, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm">
+<nav class="max-w-7xl mx-auto flex justify-between items-center px-margin-mobile md:px-xl py-md">
+<div class="font-title-lg text-title-lg font-bold text-primary">Angel AI</div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Guardian</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Safety</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Vault</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+                    JD
+                </div>
+</div>
+</nav>
+</header>
+<main class="flex-grow pt-32 pb-24 px-margin-mobile md:px-xl max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Dummy Call Setup</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Create a realistic distraction to help you exit uncomfortable situations safely and discreetly.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Configuration Section (Left) -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Caller Identity Card -->
+<section class="glass-card rounded-[20px] p-lg">
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+<h2 class="font-title-lg text-title-lg">Caller Identity</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block">Contact Name</label>
+<input class="w-full h-14 px-md rounded-xl border-none bg-secondary-container/30 focus:ring-2 focus:ring-primary placeholder:text-outline" placeholder="e.g., Mom, Roommate, Boss" type="text"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant block">Profile Photo</label>
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full bg-surface-variant border-2 border-dashed border-outline flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline">add_a_photo</span>
+</div>
+<button class="font-label-md text-label-md text-primary px-md py-sm border border-primary rounded-full hover:bg-primary-container/10 transition-all">Upload Image</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Delay and Voice Configuration -->
+<section class="glass-card rounded-[20px] p-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Delay Duration -->
+<div>
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<h2 class="font-title-lg text-title-lg">Trigger Delay</h2>
+</div>
+<div class="flex flex-wrap gap-sm">
+<button class="px-lg py-md rounded-full font-label-md text-label-md border border-outline-variant hover:border-primary transition-all">10s</button>
+<button class="px-lg py-md rounded-full font-label-md text-label-md active-pill">1m</button>
+<button class="px-lg py-md rounded-full font-label-md text-label-md border border-outline-variant hover:border-primary transition-all">5m</button>
+<button class="px-lg py-md rounded-full font-label-md text-label-md border border-outline-variant hover:border-primary transition-all">Custom</button>
+</div>
+</div>
+<!-- Voice Options -->
+<div>
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">mic</span>
+<h2 class="font-title-lg text-title-lg">Voice Setting</h2>
+</div>
+<div class="space-y-md">
+<label class="flex items-center justify-between cursor-pointer p-md rounded-xl hover:bg-surface-variant/50 transition-colors">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Enable Audio Script</span>
+<span class="text-xs text-on-surface-variant">Plays a pre-recorded voice on answer</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer p-md rounded-xl hover:bg-surface-variant/50 transition-colors">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Vibration Alert</span>
+<span class="text-xs text-on-surface-variant">Phone vibrates during the call</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Script Library -->
+<section class="glass-card rounded-[20px] p-lg">
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">library_music</span>
+<h2 class="font-title-lg text-title-lg">Audio Scripts</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Script Card -->
+<div class="p-md rounded-2xl border-2 border-primary bg-primary-container/10 flex flex-col gap-sm relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary">"Where are you?"</span>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">A neutral script where the caller asks for your location and dinner plans.</p>
+<button class="flex items-center gap-xs text-primary font-label-sm text-label-sm mt-sm">
+<span class="material-symbols-outlined text-sm">play_arrow</span> Preview Voice
+                            </button>
+</div>
+<!-- Script Card -->
+<div class="p-md rounded-2xl border border-outline-variant hover:border-primary/50 transition-all flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">"Emergency at Home"</span>
+<span class="material-symbols-outlined text-outline">circle</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Urgent tone: "Something happened at the apartment, you need to come home."</p>
+<button class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm mt-sm">
+<span class="material-symbols-outlined text-sm">play_arrow</span> Preview Voice
+                            </button>
+</div>
+<!-- Script Card -->
+<div class="p-md rounded-2xl border border-outline-variant hover:border-primary/50 transition-all flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface">"The Late Boss"</span>
+<span class="material-symbols-outlined text-outline">circle</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2">Professional: "Are you coming in to review these documents now?"</p>
+<button class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm mt-sm">
+<span class="material-symbols-outlined text-sm">play_arrow</span> Preview Voice
+                            </button>
+</div>
+<!-- Add Custom Script -->
+<div class="p-md rounded-2xl border border-dashed border-outline-variant flex items-center justify-center cursor-pointer hover:bg-surface-variant/30 transition-all">
+<div class="flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined text-outline">add</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Record Your Own</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Preview Card (Right) -->
+<div class="lg:col-span-4 sticky top-32">
+<div class="bg-inverse-surface rounded-[32px] p-xl aspect-[9/19] flex flex-col items-center justify-between shadow-2xl relative overflow-hidden group">
+<!-- Subtle Glow -->
+<div class="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-50"></div>
+<div class="relative z-10 w-full flex flex-col items-center text-center mt-xl">
+<div class="text-white/60 font-label-sm text-label-sm mb-lg tracking-widest uppercase">Incoming Call</div>
+<div class="w-32 h-32 rounded-full border-4 border-primary/20 p-1 mb-md">
+<img class="w-full h-full rounded-full object-cover" data-alt="A professional studio portrait of a friendly woman in her 50s with a warm smile, wearing a cream sweater. The background is a soft-focus living room with warm lighting, maintaining the premium guardian intelligence aesthetic of the Angel AI brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXXL5ovOp0CKO-cmuq3CiFo_SpRqnSTb-4ZVo-e2Ody9FcmV6CDnwy2rCi18JnT6Lqmz7o7_6-zyDGPvSU60ZTakobad4G-d0b0h9hSRjWZGOPF3PMyiYK2TUbmfZ0tFv3wLy8hAYJSm5_cl6ETbMGwyrc2O1Dc-JAwGNITULm9FVlSGvi_MKnEkhGwkMDczjQsZf5-Hd-yeSbPgskgHLpvUjYpXCvlHr9PmnPE-hwe4gIvAj-zYxWbLLfqQCM-xjt92rCsr6ixGJN"/>
+</div>
+<h3 class="text-white font-headline-lg text-headline-lg-mobile mb-xs">Mom</h3>
+<p class="text-white/40 font-label-md text-label-md">Mobile</p>
+</div>
+<div class="relative z-10 w-full grid grid-cols-2 gap-xxl pb-xxl">
+<div class="flex flex-col items-center gap-md">
+<button class="w-16 h-16 rounded-full bg-error flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">call_end</span>
+</button>
+<span class="text-white/60 font-label-sm text-label-sm">Decline</span>
+</div>
+<div class="flex flex-col items-center gap-md">
+<button class="w-16 h-16 rounded-full bg-[#34C759] flex items-center justify-center shadow-lg hover:scale-105 transition-transform animate-pulse">
+<span class="material-symbols-outlined text-white text-3xl">call</span>
+</button>
+<span class="text-white/60 font-label-sm text-label-sm">Accept</span>
+</div>
+</div>
+<!-- Interaction Hint -->
+<div class="absolute bottom-6 w-1/3 h-1 bg-white/20 rounded-full"></div>
+</div>
+<!-- Primary Action Button -->
+<div class="mt-lg space-y-md">
+<button class="w-full h-14 rounded-full bg-primary text-white font-label-md text-label-md flex items-center justify-center gap-md hover:bg-on-primary-fixed-variant shadow-lg active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">bolt</span>
+                        Save and Ready to Call
+                    </button>
+<p class="text-center text-xs text-on-surface-variant px-lg">Tap the side button three times to trigger this call instantly on your phone.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-margin-mobile md:px-xl border-t border-outline-variant bg-surface-container flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-title-lg text-title-lg font-bold text-primary">Angel AI</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Safety Resources</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Help Center</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" href="#">Contact Support</a>
+</div>
+<div class="font-label-sm text-label-sm text-secondary">© 2024 Angel AI. Your Guardian Intelligence.</div>
+</footer>
+<script>
+        // Simple Interaction Logic for Delay Buttons
+        const delayButtons = document.querySelectorAll('button.font-label-md');
+        delayButtons.forEach(btn => {
+            if (btn.innerText.includes('s') || btn.innerText.includes('m')) {
+                btn.addEventListener('click', () => {
+                    delayButtons.forEach(b => b.classList.remove('active-pill'));
+                    delayButtons.forEach(b => b.classList.add('border', 'border-outline-variant'));
+                    btn.classList.add('active-pill');
+                    btn.classList.remove('border', 'border-outline-variant');
+                });
+            }
+        });
+
+        // Real-time Update for Preview Name
+        const nameInput = document.querySelector('input[type="text"]');
+        const previewName = document.querySelector('h3.font-headline-lg');
+        nameInput.addEventListener('input', (e) => {
+            previewName.innerText = e.target.value || "Mom";
+        });
+    </script>
+</body></html>

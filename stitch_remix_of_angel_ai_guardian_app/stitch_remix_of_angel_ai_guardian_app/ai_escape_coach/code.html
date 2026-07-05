@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Angel AI - Escape Coach</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#c99475",
+                    "secondary": "#94483f",
+                    "background": "#fff8f7",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f7",
+                    "outline": "#887175",
+                    "primary-fixed-dim": "#ffb1c2",
+                    "tertiary-fixed-dim": "#f3ba99",
+                    "on-primary-fixed": "#3f0018",
+                    "secondary-container": "#ff9f93",
+                    "on-secondary-container": "#79332c",
+                    "primary-fixed": "#ffd9e0",
+                    "surface-container-low": "#fff0f1",
+                    "surface-dim": "#e9d5d8",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#23191b",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#ffecee",
+                    "surface-container-highest": "#f1dee0",
+                    "surface-tint": "#a33759",
+                    "on-secondary-fixed": "#3d0604",
+                    "surface-variant": "#f1dee0",
+                    "inverse-surface": "#392d30",
+                    "inverse-primary": "#ffb1c2",
+                    "on-tertiary-container": "#522d15",
+                    "on-primary-fixed-variant": "#841e41",
+                    "error": "#ba1a1a",
+                    "tertiary": "#805439",
+                    "primary": "#a33759",
+                    "tertiary-fixed": "#ffdbc8",
+                    "on-tertiary-fixed": "#311301",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f7",
+                    "surface-container-high": "#f7e3e6",
+                    "on-secondary-fixed-variant": "#76312a",
+                    "surface-container": "#fde9ec",
+                    "on-surface-variant": "#554245",
+                    "on-primary-container": "#6e0a32",
+                    "on-tertiary-fixed-variant": "#653d24",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#23191b",
+                    "secondary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#f57799",
+                    "secondary-fixed-dim": "#ffb4aa",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc0c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xxl": "48px",
+                    "gutter-mobile": "16px",
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "sm": "8px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "title-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f7; /* Tonal base */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        }
+        .typing-dot {
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        .sos-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 119, 153, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(245, 119, 153, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245, 119, 153, 0); }
+        }
+        .chat-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .chat-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface antialiased overflow-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 backdrop-blur-xl bg-background/80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Angel AI</h1>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional yet warm portrait of a woman in her late 20s, captured in soft studio lighting. The background is a gentle cream color that matches the app's aesthetic. She has a confident and calm expression, reinforcing the feeling of safety and guardianship. The overall visual style is high-end, clean, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUprtKLUZnGuRU-rMPDr5PMoWAyx4HUeoII_R9OUKgXKcgrBr0sX1HlQi7My8UeGwSumB1iTgw971O5cA3Ux35ICROobbBYf_ABgUGjbdWCv1PvHusjPIbeJJsOTA-Jcu-XyVqvj7fZeiJTiW80NsAsozhiXnWzgcSoFLR4-FPBxsx1ybodIijMeWEqNvZbT6uTTrZYSYZLiPukNmC5EyQRbnUXo0Z9NwtH-roPqUk-crnncpbPDPc_Q"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative h-screen flex flex-col pt-16 pb-32 overflow-hidden">
+<!-- Chat History Area -->
+<div class="flex-1 overflow-y-auto px-margin-mobile py-6 chat-scroll space-y-6">
+<!-- AI Welcome Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-white rounded-2xl rounded-tl-none p-4 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] text-on-surface">
+<p class="font-body-md">Hello, Sarah. I'm here. You sound like you might be in a difficult situation. How can I assist you right now?</p>
+</div>
+<span class="text-label-sm mt-2 text-outline ml-1">Angel AI • 10:24 AM</span>
+</div>
+<!-- User Response Placeholder -->
+<div class="flex flex-col items-end w-full">
+<div class="bg-primary-container text-on-primary-container rounded-2xl rounded-tr-none p-4 shadow-sm max-w-[85%]">
+<p class="font-body-md">I'm walking home and someone has been following me for two blocks.</p>
+</div>
+<span class="text-label-sm mt-2 text-outline mr-1">You • 10:25 AM</span>
+</div>
+<!-- AI Detailed Coaching Steps -->
+<div class="flex flex-col items-start max-w-[90%]">
+<div class="bg-white rounded-2xl rounded-tl-none p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] space-y-4">
+<p class="font-body-md font-semibold text-primary">I've locked onto your location. Stay calm, Sarah. Follow these steps immediately:</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl border border-primary-container/20">
+<span class="material-symbols-outlined text-primary" data-icon="share_location">share_location</span>
+<div class="flex-1">
+<p class="text-label-md">Sharing live location</p>
+<p class="text-xs text-outline">Sent to your Guardian circle</p>
+</div>
+<span class="material-symbols-outlined text-green-600" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-xl border border-primary-container/20">
+<span class="material-symbols-outlined text-primary" data-icon="local_police">local_police</span>
+<div class="flex-1">
+<p class="text-label-md">Ready to call local dispatch</p>
+<p class="text-xs text-outline">Precinct 4 is 0.4 miles away</p>
+</div>
+<button class="bg-primary text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Call Now</button>
+</div>
+<div class="bg-tertiary-container/10 p-4 rounded-xl border-l-4 border-tertiary">
+<p class="text-sm font-medium text-tertiary">Pro-Tip:</p>
+<p class="text-xs text-on-surface-variant">Head towards 'The Daily Grind' cafe 200ft ahead on your right. It's open and well-lit.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-center gap-2 ml-2">
+<div class="flex space-x-1 bg-white/50 backdrop-blur-sm px-4 py-3 rounded-full">
+<div class="w-1.5 h-1.5 bg-primary rounded-full typing-dot"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full typing-dot"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full typing-dot"></div>
+</div>
+</div>
+</div>
+<!-- Floating Quick Prompts & Input Area -->
+<div class="absolute bottom-28 left-0 w-full px-margin-mobile space-y-4">
+<!-- Suggested Chips -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="whitespace-nowrap bg-surface-container-highest/60 backdrop-blur-md border border-outline-variant/30 text-on-surface-variant px-4 py-2 rounded-full font-label-sm text-label-sm hover:bg-primary-container/20 transition-all">
+                    I'm being followed
+                </button>
+<button class="whitespace-nowrap bg-surface-container-highest/60 backdrop-blur-md border border-outline-variant/30 text-on-surface-variant px-4 py-2 rounded-full font-label-sm text-label-sm hover:bg-primary-container/20 transition-all">
+                    My cab changed route
+                </button>
+<button class="whitespace-nowrap bg-surface-container-highest/60 backdrop-blur-md border border-outline-variant/30 text-on-surface-variant px-4 py-2 rounded-full font-label-sm text-label-sm hover:bg-primary-container/20 transition-all">
+                    I feel unsafe
+                </button>
+</div>
+<!-- Input Bar -->
+<div class="flex items-center gap-3 bg-white p-2 rounded-full shadow-[0px_4px_20px_rgba(0,0,0,0.06)] border border-outline-variant/20">
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-primary-container/10 rounded-full">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/60 text-body-md" placeholder="Tell Angel what's happening..." type="text"/>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+</div>
+<!-- SOS Floating Trigger (Contextual) -->
+<button class="fixed bottom-32 right-6 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full shadow-lg flex items-center justify-center text-white sos-pulse z-[60]">
+<span class="font-bold text-lg">SOS</span>
+</button>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-5 right-5 z-50 flex justify-around items-center h-20 px-2 bg-surface/90 backdrop-blur-lg rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)]">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm mt-0.5">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shield_with_heart" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+<span class="text-label-sm font-label-sm mt-0.5">Guardian</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="text-label-sm font-label-sm mt-0.5">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_lock">folder_check</span>
+<span class="text-label-sm font-label-sm mt-0.5">Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:bg-primary-container/50 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm mt-0.5">Profile</span>
+</a>
+</nav>
+<!-- Visual Atmosphere: Subtle background animation -->
+<div class="fixed inset-0 -z-10 opacity-30 pointer-events-none">
+
+</div>
+<script>
+        // Micro-interaction for SOS button
+        const sosBtn = document.querySelector('.sos-pulse');
+        sosBtn.addEventListener('touchstart', () => {
+            sosBtn.style.transform = 'scale(0.85)';
+        });
+        sosBtn.addEventListener('touchend', () => {
+            sosBtn.style.transform = 'scale(1)';
+        });
+
+        // Simulate typing scroll
+        const chatContainer = document.querySelector('.chat-scroll');
+        function scrollToBottom() {
+            chatContainer.scrollTo({
+                top: chatContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+        window.addEventListener('load', scrollToBottom);
+
+        // Simple prompt click simulation
+        document.querySelectorAll('button[class*="whitespace-nowrap"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.innerText;
+                const input = document.querySelector('input');
+                input.value = text;
+                input.focus();
+            });
+        });
+    </script>
+</body></html>

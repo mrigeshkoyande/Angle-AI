@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Hidden SOS | Angel AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#c99475",
+                        "secondary": "#94483f",
+                        "background": "#fff8f7",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fff8f7",
+                        "outline": "#887175",
+                        "primary-fixed-dim": "#ffb1c2",
+                        "tertiary-fixed-dim": "#f3ba99",
+                        "on-primary-fixed": "#3f0018",
+                        "secondary-container": "#ff9f93",
+                        "on-secondary-container": "#79332c",
+                        "primary-fixed": "#ffd9e0",
+                        "surface-container-low": "#fff0f1",
+                        "surface-dim": "#e9d5d8",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#23191b",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#ffecee",
+                        "surface-container-highest": "#f1dee0",
+                        "surface-tint": "#a33759",
+                        "on-secondary-fixed": "#3d0604",
+                        "surface-variant": "#f1dee0",
+                        "inverse-surface": "#392d30",
+                        "inverse-primary": "#ffb1c2",
+                        "on-tertiary-container": "#522d15",
+                        "on-primary-fixed-variant": "#841e41",
+                        "error": "#ba1a1a",
+                        "tertiary": "#805439",
+                        "primary": "#a33759",
+                        "tertiary-fixed": "#ffdbc8",
+                        "on-tertiary-fixed": "#311301",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f7",
+                        "surface-container-high": "#f7e3e6",
+                        "on-secondary-fixed-variant": "#76312a",
+                        "surface-container": "#fde9ec",
+                        "on-surface-variant": "#554245",
+                        "on-primary-container": "#6e0a32",
+                        "on-tertiary-fixed-variant": "#653d24",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#23191b",
+                        "secondary-fixed": "#ffdad5",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#f57799",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#dbc0c4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xxl": "48px",
+                        "gutter-mobile": "16px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "title-lg": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 backdrop-blur-xl bg-background/80">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">Hidden SOS</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-on-surface">settings</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-md mx-auto">
+<!-- Live Status Indicator -->
+<div class="mb-8 flex items-center justify-between p-4 rounded-xl bg-surface-container-low shadow-sm border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-secondary rounded-full animate-pulse"></span>
+</div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Live Location Sharing</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Active • 12 Contacts notified on trigger</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<!-- Section: Trigger Methods (Bento Grid) -->
+<section class="mb-10">
+<h2 class="text-label-md font-label-md uppercase tracking-wider text-outline mb-4">Activation Methods</h2>
+<div class="grid grid-cols-2 gap-4">
+<!-- Power Button -->
+<div class="bg-white p-5 rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary-container text-3xl">power_settings_new</span>
+<div>
+<p class="text-label-md font-label-md text-on-surface leading-tight">Power Trigger</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Press 5 times</p>
+</div>
+</div>
+<!-- Secret Gesture -->
+<div class="bg-white p-5 rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col gap-3">
+<span class="material-symbols-outlined text-tertiary text-3xl">gesture</span>
+<div>
+<p class="text-label-md font-label-md text-on-surface leading-tight">Secret Gesture</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">L-shape swipe</p>
+</div>
+</div>
+<!-- Fake PIN -->
+<div class="bg-white p-5 rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col gap-3">
+<span class="material-symbols-outlined text-secondary text-3xl">dialpad</span>
+<div>
+<p class="text-label-md font-label-md text-on-surface leading-tight">Fake PIN</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Duress code</p>
+</div>
+</div>
+<!-- Silent SOS -->
+<div class="bg-white p-5 rounded-[20px] shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col gap-3 border-2 border-primary-container/20">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">volume_off</span>
+<div>
+<p class="text-label-md font-label-md text-on-surface leading-tight">Silent SOS</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">No audio/flash</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Active Contacts -->
+<section class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-label-md font-label-md uppercase tracking-wider text-outline">Emergency Contacts</h2>
+<button class="text-primary text-label-md font-label-md">Manage</button>
+</div>
+<div class="space-y-3">
+<!-- Contact 1 -->
+<div class="flex items-center gap-4 bg-white/50 p-3 rounded-xl">
+<div class="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a supportive-looking woman in her late 30s, warm lighting, soft cream background, focused on empathy and reliability. High-end lifestyle photography aesthetic with soft bokeh." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeufC9Hf0KhMrhaxygg8P_t-fmo-wRVcjkPP5jO2sUOY1ndyX6WNi2kEgOPOEGrJysCjFtPrxtrKZjlEyGdJrHHNUfqPDH7lq6HGCONJDGZ-rMVswwp_K7yvefNsAhn_aMV8pImCQj0j6RzCHEu73GBi3hQh5Vj3sv7JNEfM6udeGUEUpnNvFtKPslm1yc2zFLtjvGUK5suNwgYcUbp_jTvSiDA9ral2mjYndUqwvTNarbCRmCNpYt2Q"/>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-label-md text-on-surface">Sarah Mitchell</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Primary Guardian</p>
+</div>
+<div class="flex gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+</div>
+</div>
+<!-- Contact 2 -->
+<div class="flex items-center gap-4 bg-white/50 p-3 rounded-xl">
+<div class="w-12 h-12 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of an older man with graying hair, wearing a clean linen shirt, looking directly at the camera with a calm and protective expression. Minimalist composition, warm lighting, premium editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUyP9VEp_uyiEXab_AhMG-iSg9HkJwhmMA7iMvDF8WzMNCNxy4LmqtlHWkzgCwXlHVgKFigryC57IVg5PrDsyQv7AuysHBPxV7klc07ADZAzAZLZh-DQPioUPUKCwyyENWKa7-MB8EuHtECmtu2IMUEr7xlhEpe-C36NELJDpBY6H2dWHvQkBCTF7TgLnelrZGJYDiR6F3EPcDw0nRhIFdQBew8KXk5EsHh1WQ8ejrQQKms7VduKvGOA"/>
+</div>
+<div class="flex-1">
+<p class="text-label-md font-label-md text-on-surface">Robert Chen</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Secondary Contact</p>
+</div>
+<div class="flex gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Manual SOS Trigger Area -->
+<div class="mt-8">
+<button class="w-full h-16 bg-primary-container text-white rounded-full font-label-md text-lg shadow-[0px_8px_30px_rgba(245,119,153,0.15)] flex items-center justify-center gap-3 active:scale-95 transition-transform animate-pulse-soft" onclick="triggerSOS()">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                Activate Hidden SOS
+            </button>
+<p class="text-center text-label-sm font-label-sm text-on-surface-variant mt-4 px-6 leading-relaxed">
+                Activating will record ambient audio, share live location, and notify guardians without visual or haptic feedback.
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-6 left-5 right-5 z-50 flex justify-around items-center h-20 px-2 bg-surface/90 backdrop-blur-lg rounded-full shadow-[0px_8px_30px_rgba(245,119,153,0.15)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="shield_with_heart">shield_with_heart</span>
+<span class="text-label-sm font-label-sm">Guardian</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-label-sm font-label-sm">Safety</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="folder_lock">folder_check</span>
+<span class="text-label-sm font-label-sm">Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-container/20 transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Success Overlay (Hidden) -->
+<div class="fixed inset-0 z-[100] bg-black items-center justify-center hidden" id="sosOverlay">
+<div class="text-center p-8">
+<div class="w-24 h-24 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center animate-ping"></div>
+<h2 class="text-white text-headline-lg font-headline-lg mb-2">SOS Active</h2>
+<p class="text-white/60 text-body-md">Screen Locked. Background recording active.</p>
+</div>
+</div>
+<script>
+        function triggerSOS() {
+            // Simulated hidden trigger effect
+            const overlay = document.getElementById('sosOverlay');
+            // Flash red once
+            document.body.style.backgroundColor = '#a33759';
+            setTimeout(() => {
+                document.body.style.backgroundColor = '#fff8f7';
+                // In a real app, the screen might dim or go black to stay "hidden"
+                console.log("Hidden SOS Activated. Recording...");
+                alert("Hidden SOS Activated: Silence mode enabled. Guardians notified.");
+            }, 300);
+        }
+
+        // Handle active state icon logic as mandated
+        document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
+            if (icon.getAttribute('data-icon')) {
+                icon.innerText = icon.getAttribute('data-icon');
+                icon.classList.add('material-symbols-outlined');
+            }
+        });
+    </script>
+</body></html>
