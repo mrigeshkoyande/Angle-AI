@@ -1,0 +1,193 @@
+import type { User, Contact, GuardianModeState, EvidenceVault, SafetyLesson, ChatMessage } from '../types';
+
+// ============================================================
+// Mock API Layer — Angel AI Guardian
+// Drop-in: replace with real fetch calls pointing to your backend.
+// All functions return typed Promises so the interface never changes.
+// ============================================================
+
+const delay = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
+
+// ── Auth ─────────────────────────────────────────────────────
+export const authApi = {
+  login: async (phone: string): Promise<{ user: User; token: string }> => {
+    await delay(800);
+    return {
+      user: {
+        id: 'usr_001',
+        name: 'Elena Carter',
+        phone,
+        email: 'elena@example.com',
+        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80',
+      },
+      token: 'mock_jwt_token_xyz',
+    };
+  },
+  loginWithGoogle: async (): Promise<{ user: User; token: string }> => {
+    await delay(600);
+    return {
+      user: {
+        id: 'usr_001',
+        name: 'Elena Carter',
+        phone: '+1 (555) 012-3456',
+        email: 'elena@example.com',
+        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80',
+      },
+      token: 'mock_google_token',
+    };
+  },
+  logout: async (): Promise<void> => {
+    await delay(200);
+  },
+};
+
+// ── Guardian ──────────────────────────────────────────────────
+export const guardianApi = {
+  startMonitoring: async (): Promise<GuardianModeState> => {
+    await delay(500);
+    return {
+      isActive: true,
+      status: 'active',
+      destination: 'The Arts Club, Mayfair',
+      eta: '12 mins',
+      checkInsEnabled: true,
+      anomalyDetectionEnabled: true,
+      realTimeTracking: true,
+      journeyStartTime: new Date(),
+      checkpoints: [
+        { id: 'cp1', label: 'Journey Started', time: '21:40', location: 'Hyde Park Corner', status: 'passed' },
+        { id: 'cp2', label: 'Checkpoint 1', time: '21:48', location: 'Passed Safely', status: 'passed' },
+        { id: 'cp3', label: 'ETA: 12 mins', time: '22:00', location: 'Dover Street', status: 'current' },
+      ],
+    };
+  },
+  stopMonitoring: async (): Promise<void> => {
+    await delay(300);
+  },
+  updateSettings: async (settings: Partial<GuardianModeState>): Promise<GuardianModeState> => {
+    await delay(400);
+    return {
+      isActive: true,
+      status: 'active',
+      destination: 'Home',
+      eta: '5 mins',
+      checkInsEnabled: true,
+      anomalyDetectionEnabled: true,
+      realTimeTracking: true,
+      checkpoints: [],
+      ...settings,
+    };
+  },
+};
+
+// ── SOS ───────────────────────────────────────────────────────
+export const sosApi = {
+  triggerSOS: async (): Promise<{ alertId: string; notifiedContacts: number }> => {
+    await delay(200);
+    return { alertId: 'sos_' + Date.now(), notifiedContacts: 3 };
+  },
+  cancelSOS: async (alertId: string): Promise<void> => {
+    await delay(200);
+    console.log('SOS cancelled:', alertId);
+  },
+  notifyContacts: async (contacts: Contact[]): Promise<void> => {
+    await delay(300);
+    console.log('Notified:', contacts.map(c => c.name).join(', '));
+  },
+};
+
+// ── Location ──────────────────────────────────────────────────
+export const locationApi = {
+  getCurrentLocation: async () => {
+    await delay(300);
+    return {
+      lat: 51.5074,
+      lng: -0.1278,
+      address: 'HSR Layout, Sector 2',
+      neighborhood: 'HSR Layout',
+      timestamp: new Date(),
+    };
+  },
+  getJourneyHistory: async () => {
+    await delay(400);
+    return [
+      { label: 'Left Office', time: '06:45 PM', location: 'Whitefield', status: 'passed' as const },
+      { label: 'Metro Transit', time: '07:15 PM', location: 'MG Road Station', status: 'passed' as const },
+      { label: 'Walking Home', time: '08:02 PM', location: 'Current', status: 'current' as const },
+    ];
+  },
+};
+
+// ── Evidence ──────────────────────────────────────────────────
+export const evidenceApi = {
+  getVault: async (): Promise<EvidenceVault> => {
+    await delay(600);
+    return {
+      totalSizeGB: 12.4,
+      itemCount: 1204,
+      lastSyncedAt: new Date(Date.now() - 2 * 60 * 1000),
+      photos: [],
+      videos: [],
+      audio: [],
+      logs: [],
+    };
+  },
+  uploadEvidence: async (_file: File): Promise<{ id: string; url: string }> => {
+    await delay(1500);
+    return { id: 'ev_' + Date.now(), url: '/mock-upload.jpg' };
+  },
+};
+
+// ── Contacts ──────────────────────────────────────────────────
+export const contactsApi = {
+  getContacts: async (): Promise<Contact[]> => {
+    await delay(400);
+    return [
+      { id: 'c1', name: 'Sarah Mitchell', phone: '+1 555 001', relationship: 'primary', isOnline: true },
+      { id: 'c2', name: 'Robert Chen', phone: '+1 555 002', relationship: 'secondary', isOnline: true },
+      { id: 'c3', name: 'Mom', phone: '+1 555 003', relationship: 'family', isOnline: false },
+    ];
+  },
+  addContact: async (contact: Omit<Contact, 'id'>): Promise<Contact> => {
+    await delay(400);
+    return { ...contact, id: 'c_' + Date.now() };
+  },
+};
+
+// ── AI Escape Coach ───────────────────────────────────────────
+export const escapeCoachApi = {
+  sendMessage: async (message: string): Promise<ChatMessage> => {
+    await delay(1000 + Math.random() * 500);
+    const responses: Record<string, string> = {
+      default: "I'm analyzing your situation. Stay calm. I've locked onto your location and am sharing it with your guardian circle. What's happening around you right now?",
+      following: "I've locked onto your location. Stay calm. Follow these steps:\n\n1. Cross the street — this breaks predictable patterns.\n2. Enter a well-lit public space (café, pharmacy).\n3. I'm ready to call local dispatch — Precinct 4 is 0.4 miles away.",
+      unsafe: "I hear you. You're safe to talk to me. I'm quietly monitoring everything. Should I activate Silent SOS and notify your contacts without any visible alert?",
+    };
+    const key = message.toLowerCase().includes('follow') ? 'following'
+      : message.toLowerCase().includes('unsafe') ? 'unsafe'
+      : 'default';
+    return {
+      id: 'msg_' + Date.now(),
+      sender: 'ai',
+      content: responses[key],
+      timestamp: new Date(),
+      actions: key === 'following' ? [
+        { label: 'Call Dispatch', type: 'call', value: '911' },
+        { label: 'Share Location', type: 'share-location', value: 'guardian-circle' },
+      ] : undefined,
+    };
+  },
+};
+
+// ── Self-Defence ──────────────────────────────────────────────
+export const selfDefenceApi = {
+  getLessons: async (): Promise<SafetyLesson[]> => {
+    await delay(500);
+    return [
+      { id: 'l1', title: 'Digital Footprint Safety', category: 'escape', durationMinutes: 2, level: 'advanced', rating: 4.9 },
+      { id: 'l2', title: 'Night Walk Confidence', category: 'night', durationMinutes: 2, level: 'beginner', rating: 5.0 },
+      { id: 'l3', title: 'Public Transport Safety', category: 'transport', durationMinutes: 3, level: 'intermediate', rating: 4.7 },
+      { id: 'l4', title: 'Awareness Mastery', category: 'escape', durationMinutes: 8, level: 'beginner', rating: 4.8 },
+    ];
+  },
+};
