@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppShell from '../../components/layout/AppShell';
 import Chip from '../../components/ui/Chip';
-import SOSButton from '../../components/ui/SOSButton';
 import Icon from '../../components/ui/Icon';
 import { useApp } from '../../core/hooks/useApp';
-import { sosApi, locationApi } from '../../core/api';
+import { locationApi } from '../../core/api';
 
 interface QuickAction {
   icon: string;
@@ -27,23 +26,24 @@ const quickActions: QuickAction[] = [
 
 export default function HomeDashboard() {
   const navigate = useNavigate();
-  const { state, setSosState } = useApp();
+  const { state } = useApp();
   const [location, setLocation] = useState('HSR Layout, Sector 2');
 
   useEffect(() => {
-    locationApi.getCurrentLocation().then((loc) => setLocation(loc.address));
+    const loadLocation = async () => {
+      try {
+        const loc = await locationApi.getCurrentLocation();
+        setLocation(loc.address);
+      } catch {
+        setLocation('Current location unavailable');
+      }
+    };
+    void loadLocation();
   }, []);
 
   const userName = state.user?.name?.split(' ')[0] ?? 'Elena';
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
-
-  const handleSOSActivate = async () => {
-    setSosState('active');
-    try {
-      await sosApi.triggerSOS();
-    } catch { /* handled gracefully */ }
-  };
 
   return (
     <AppShell>
@@ -153,14 +153,6 @@ export default function HomeDashboard() {
         </button>
       </div>
 
-      {/* SOS FAB */}
-      <div className="fixed bottom-28 lg:bottom-8 right-5 z-[60]">
-        <SOSButton
-          onActivate={handleSOSActivate}
-          onCancel={() => setSosState('cancelled')}
-          className="animate-sos-pulse"
-        />
-      </div>
     </AppShell>
   );
 }

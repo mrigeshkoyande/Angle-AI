@@ -1,11 +1,12 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Icon from './Icon';
 
 interface SOSButtonProps {
   onActivate: () => void;
   onCancel?: () => void;
-  holdDuration?: number; // ms
+  holdDuration?: number;
   className?: string;
+  activationMode?: 'click' | 'hold';
 }
 
 export default function SOSButton({
@@ -13,6 +14,7 @@ export default function SOSButton({
   onCancel,
   holdDuration = 3000,
   className = '',
+  activationMode = 'click',
 }: SOSButtonProps) {
   const [holding, setHolding] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -28,6 +30,7 @@ export default function SOSButton({
   }, []);
 
   const startHold = useCallback(() => {
+    if (activationMode === 'click') return;
     setHolding(true);
     startTimeRef.current = Date.now();
 
@@ -43,20 +46,27 @@ export default function SOSButton({
       setProgress(0);
       onActivate();
     }, holdDuration);
-  }, [holdDuration, onActivate, clearTimers]);
+  }, [activationMode, clearTimers, holdDuration, onActivate]);
 
   const endHold = useCallback(() => {
+    if (activationMode === 'click') return;
     if (holding) {
       clearTimers();
       setHolding(false);
       setProgress(0);
       onCancel?.();
     }
-  }, [holding, clearTimers, onCancel]);
+  }, [activationMode, clearTimers, holding, onCancel]);
+
+  const handleClick = useCallback(() => {
+    if (activationMode === 'click') {
+      onActivate();
+    }
+  }, [activationMode, onActivate]);
 
   return (
     <button
-      aria-label="SOS Emergency Button — hold for 3 seconds to activate"
+      aria-label={activationMode === 'click' ? 'Open SOS activation flow' : 'SOS Emergency Button - hold for 3 seconds to activate'}
       className={`
         relative w-16 h-16 rounded-full
         bg-sos-gradient text-white
@@ -71,11 +81,16 @@ export default function SOSButton({
       onMouseDown={startHold}
       onMouseUp={endHold}
       onMouseLeave={endHold}
-      onTouchStart={(e) => { e.preventDefault(); startHold(); }}
+      onTouchStart={(event) => {
+        if (activationMode === 'hold') {
+          event.preventDefault();
+        }
+        startHold();
+      }}
       onTouchEnd={endHold}
+      onClick={handleClick}
       style={{ animation: holding ? 'none' : undefined }}
     >
-      {/* Progress ring */}
       {holding && (
         <svg
           className="absolute inset-0 w-full h-full -rotate-90"
@@ -83,13 +98,17 @@ export default function SOSButton({
           aria-hidden="true"
         >
           <circle
-            cx="32" cy="32" r="30"
+            cx="32"
+            cy="32"
+            r="30"
             fill="none"
             stroke="rgba(255,255,255,0.3)"
             strokeWidth="4"
           />
           <circle
-            cx="32" cy="32" r="30"
+            cx="32"
+            cy="32"
+            r="30"
             fill="none"
             stroke="white"
             strokeWidth="4"

@@ -9,6 +9,7 @@ import {
   nativePreferences,
   nativeGeolocation,
   nativeCamera,
+  nativeAudio,
   nativeFilesystem,
   nativeShare,
   nativeClipboard,
@@ -39,7 +40,16 @@ export function usePlatform(): PlatformInfo {
   });
 
   useEffect(() => {
-    nativePlatform.getInfo().then(setInfo);
+    nativePlatform.getInfo().then(setInfo).catch(() => {
+      setInfo({
+        platform: 'web',
+        isNative: false,
+        isIOS: false,
+        isAndroid: false,
+        isWeb: true,
+        isTablet: false,
+      });
+    });
   }, []);
 
   return info;
@@ -53,7 +63,9 @@ export function useNetwork(): NetworkStatusInfo {
   });
 
   useEffect(() => {
-    nativeNetwork.getStatus().then(setStatus);
+    nativeNetwork.getStatus().then(setStatus).catch(() => {
+      setStatus({ connected: navigator.onLine, connectionType: navigator.onLine ? 'wifi' : 'none' });
+    });
     const removeListener = nativeNetwork.onStatusChange(setStatus);
     return () => { removeListener(); };
   }, []);
@@ -150,6 +162,7 @@ export function useCapacitor() {
     preferences: nativePreferences,
     geolocation: nativeGeolocation,
     camera: nativeCamera,
+    audio: nativeAudio,
     filesystem: nativeFilesystem,
     share: nativeShare,
     clipboard: nativeClipboard,

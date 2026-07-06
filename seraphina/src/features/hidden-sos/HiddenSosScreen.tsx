@@ -4,13 +4,9 @@ import Card from '../../components/ui/Card';
 import Toggle from '../../components/ui/Toggle';
 import Chip from '../../components/ui/Chip';
 import Icon from '../../components/ui/Icon';
-import SOSButton from '../../components/ui/SOSButton';
-import { useApp } from '../../core/hooks/useApp';
-import { sosApi } from '../../core/api';
 import { useHaptics } from '../../platform';
 
 export default function HiddenSosScreen() {
-  const { setSosState } = useApp();
   const { impact } = useHaptics();
   const [silentMode, setSilentMode] = useState(true);
   const [powerTap, setPowerTap] = useState(true);
@@ -18,14 +14,8 @@ export default function HiddenSosScreen() {
   const [fakePin, setFakePin] = useState('9999');
   const [isTestActive, setIsTestActive] = useState(false);
 
-  const handleSOSActivate = async () => {
-    impact('heavy');
-    setSosState('active');
-    await sosApi.triggerSOS();
-  };
-
   const handleTestSilentTrigger = () => {
-    impact('medium');
+    void impact('medium');
     setIsTestActive(true);
     setTimeout(() => {
       setIsTestActive(false);
@@ -130,10 +120,6 @@ export default function HiddenSosScreen() {
         </div>
       </div>
 
-      {/* SOS FAB */}
-      <div className="fixed bottom-28 lg:bottom-8 right-5 z-[60]">
-        <SOSButton onActivate={handleSOSActivate} className="animate-sos-pulse" />
-      </div>
     </AppShell>
   );
 }

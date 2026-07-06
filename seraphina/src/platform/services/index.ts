@@ -270,8 +270,72 @@ export const nativeGeolocation = {
 };
 
 // ── Camera ────────────────────────────────────────────────────
+const openWebFilePicker = (source: 'camera' | 'photos'): Promise<PhotoResult | null> => {
+  if (typeof document === 'undefined') return Promise.resolve(null);
+
+  return new Promise((resolve) => {
+    const input = document.createElement('input');
+    let settled = false;
+
+    const cleanup = () => {
+      window.removeEventListener('focus', handleFocus);
+      input.remove();
+    };
+
+    const finish = (result: PhotoResult | null) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve(result);
+    };
+
+    const handleFocus = () => {
+      window.setTimeout(() => {
+        if (!input.files || input.files.length === 0) {
+          finish(null);
+        }
+      }, 300);
+    };
+
+    input.type = 'file';
+    input.accept = 'image/*';
+    if (source === 'camera') {
+      input.capture = 'environment';
+    }
+    input.style.position = 'fixed';
+    input.style.left = '-9999px';
+
+    input.addEventListener('change', () => {
+      const file = input.files?.[0];
+      if (!file) {
+        finish(null);
+        return;
+      }
+
+      finish({
+        filepath: file.name,
+        webviewPath: URL.createObjectURL(file),
+        format: file.type.split('/')[1] || 'jpeg',
+      });
+    }, { once: true });
+
+    document.body.appendChild(input);
+    window.addEventListener('focus', handleFocus);
+    input.click();
+  });
+};
+
 export const nativeCamera = {
   getPhoto: async (source: 'camera' | 'photos' = 'camera'): Promise<PhotoResult | null> => {
+    if (!isNative || platform === 'web') {
+      try {
+        return await openWebFilePicker(source);
+      } catch (e) {
+        console.warn('Web camera/file picker unavailable:', e);
+        return null;
+      }
+    }
+
     try {
       const photo = await Camera.getPhoto({
         quality: 90,
@@ -288,6 +352,62 @@ export const nativeCamera = {
       console.warn('Camera cancelled or unavailable:', e);
       return null;
     }
+  },
+};
+
+// ── Audio ─────────────────────────────────────────────────────
+let activeAudio: HTMLAudioElement | null = null;
+let audioOperation = Promise.resolve();
+
+const enqueueAudioOperation = (operation: () => Promise<void>) => {
+  audioOperation = audioOperation.then(operation, operation);
+  return audioOperation;
+};
+
+export const nativeAudio = {
+  play: async (src: string, options: { loop?: boolean; volume?: number } = {}) => {
+    await enqueueAudioOperation(async () => {
+      try {
+        if (activeAudio) {
+          activeAudio.pause();
+          activeAudio.currentTime = 0;
+        }
+
+        const audio = new Audio(src);
+        audio.loop = options.loop ?? false;
+        audio.volume = options.volume ?? 1;
+        activeAudio = audio;
+        await audio.play();
+      } catch (e) {
+        console.warn('Audio playback unavailable:', e);
+        activeAudio = null;
+      }
+    });
+  },
+  pause: async () => {
+    await enqueueAudioOperation(async () => {
+      if (!activeAudio) return;
+      try {
+        activeAudio.pause();
+      } catch (e) {
+        console.warn('Audio pause unavailable:', e);
+      } finally {
+        activeAudio = null;
+      }
+    });
+  },
+  stop: async () => {
+    await enqueueAudioOperation(async () => {
+      if (!activeAudio) return;
+      try {
+        activeAudio.pause();
+        activeAudio.currentTime = 0;
+      } catch (e) {
+        console.warn('Audio stop unavailable:', e);
+      } finally {
+        activeAudio = null;
+      }
+    });
   },
 };
 

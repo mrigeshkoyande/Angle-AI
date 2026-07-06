@@ -4,13 +4,12 @@ import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import Chip from '../../components/ui/Chip';
 import Icon from '../../components/ui/Icon';
-import SOSButton from '../../components/ui/SOSButton';
 import { useApp } from '../../core/hooks/useApp';
-import { guardianApi, sosApi } from '../../core/api';
+import { guardianApi } from '../../core/api';
 import { useHaptics } from '../../platform';
 
 export default function GuardianModeScreen() {
-  const { state, setGuardianMode, setSosState } = useApp();
+  const { state, setGuardianMode } = useApp();
   const { impact } = useHaptics();
   const [destination, setDestination] = useState('Indiranagar Metro Station');
   const [checkInTimer, setCheckInTimer] = useState(15 * 60); // 15 mins in seconds
@@ -27,27 +26,25 @@ export default function GuardianModeScreen() {
   }, [isTracking, checkInTimer]);
 
   const handleToggleGuardian = async () => {
-    impact('medium');
-    if (isTracking) {
-      setIsTracking(false);
-      setGuardianMode({ isActive: false, status: 'inactive' });
-      await guardianApi.stopMonitoring();
-    } else {
-      setIsTracking(true);
-      setGuardianMode({ isActive: true, status: 'active', destination });
-      await guardianApi.startMonitoring();
+    try {
+      await impact('medium');
+      if (isTracking) {
+        setIsTracking(false);
+        setGuardianMode({ isActive: false, status: 'inactive' });
+        await guardianApi.stopMonitoring();
+      } else {
+        setIsTracking(true);
+        setGuardianMode({ isActive: true, status: 'active', destination });
+        await guardianApi.startMonitoring();
+      }
+    } catch {
+      setGuardianMode({ status: isTracking ? 'inactive' : 'active' });
     }
   };
 
   const handleCheckIn = () => {
     impact('light');
     setCheckInTimer(15 * 60);
-  };
-
-  const handleSOSActivate = async () => {
-    impact('heavy');
-    setSosState('active');
-    await sosApi.triggerSOS();
   };
 
   const formatTime = (secs: number) => {
@@ -153,10 +150,6 @@ export default function GuardianModeScreen() {
         </section>
       </div>
 
-      {/* SOS FAB */}
-      <div className="fixed bottom-28 lg:bottom-8 right-5 z-[60]">
-        <SOSButton onActivate={handleSOSActivate} className="animate-sos-pulse" />
-      </div>
     </AppShell>
   );
 }

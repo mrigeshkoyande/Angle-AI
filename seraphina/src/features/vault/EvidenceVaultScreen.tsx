@@ -16,19 +16,30 @@ export default function EvidenceVaultScreen() {
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    evidenceApi.getVault().then((res) => {
-      const allItems = [...res.photos, ...res.videos, ...res.audio, ...res.logs];
-      setItems(allItems);
-      setLoading(false);
-    });
+    const loadVault = async () => {
+      try {
+        const res = await evidenceApi.getVault();
+        const allItems = [...res.photos, ...res.videos, ...res.audio, ...res.logs];
+        setItems(allItems);
+      } catch {
+        setItems([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    void loadVault();
   }, []);
 
   const handleCaptureEvidence = async () => {
-    impact('medium');
-    const photo = await camera.getPhoto('camera');
-    if (photo) {
-      setUploading(true);
-      setTimeout(() => {
+    if (uploading) return;
+    setUploading(true);
+
+    try {
+      await impact('medium');
+      const photo = await camera.getPhoto('camera');
+
+      await new Promise((resolve) => window.setTimeout(resolve, 1500));
+      if (photo) {
         const newItem: EvidenceItem = {
           id: Date.now().toString(),
           type: 'photo',
@@ -38,25 +49,12 @@ export default function EvidenceVaultScreen() {
           isEncrypted: true,
         };
         setItems((prev) => [newItem, ...prev]);
-        setUploading(false);
-        notification('success');
-      }, 1500);
-    } else {
-      // Simulate upload if camera cancelled or on desktop
-      setUploading(true);
-      setTimeout(() => {
-        const newItem: EvidenceItem = {
-          id: Date.now().toString(),
-          type: 'audio',
-          url: '#',
-          timestamp: new Date(),
-          location: 'Current GPS Location',
-          isEncrypted: true,
-        };
-        setItems((prev) => [newItem, ...prev]);
-        setUploading(false);
-        notification('success');
-      }, 1500);
+        await notification('success');
+      }
+    } catch {
+      // Camera cancellation or unavailable hardware is a non-fatal no-op.
+    } finally {
+      setUploading(false);
     }
   };
 

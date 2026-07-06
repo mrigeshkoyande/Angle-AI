@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext, useContext, type ReactNode } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 import {
   nativePlatform,
   nativeSplashScreen,
@@ -7,31 +7,8 @@ import {
   nativeNetwork,
   nativeOrientation,
 } from './services';
+import { PlatformContext } from './context';
 import type { PlatformInfo, NetworkStatusInfo } from './types';
-
-interface PlatformContextValue {
-  platformInfo: PlatformInfo;
-  networkStatus: NetworkStatusInfo;
-}
-
-const PlatformContext = createContext<PlatformContextValue>({
-  platformInfo: {
-    platform: 'web',
-    isNative: false,
-    isIOS: false,
-    isAndroid: false,
-    isWeb: true,
-    isTablet: false,
-  },
-  networkStatus: {
-    connected: true,
-    connectionType: 'wifi',
-  },
-});
-
-export function usePlatformContext() {
-  return useContext(PlatformContext);
-}
 
 export function PlatformProvider({ children }: { children: ReactNode }) {
   const [platformInfo, setPlatformInfo] = useState<PlatformInfo>({
@@ -48,26 +25,40 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    // 1. Initialize platform info
-    nativePlatform.getInfo().then((info) => {
-      setPlatformInfo(info);
-      if (info.isNative && !info.isTablet) {
-        // Lock mobile phones to portrait for safety UX; tablets stay flexible
-        nativeOrientation.lockPortrait();
+    const initializePlatform = async () => {
+      try {
+        const info = await nativePlatform.getInfo();
+        setPlatformInfo(info);
+        if (info.isNative && !info.isTablet) {
+          await nativeOrientation.lockPortrait();
+        }
+      } catch {
+        // Defaults already describe the web fallback.
       }
-    });
+
+      try {
+        const status = await nativeNetwork.getStatus();
+        setNetworkStatus(status);
+      } catch {
+        setNetworkStatus({ connected: navigator.onLine, connectionType: navigator.onLine ? 'wifi' : 'none' });
+      }
+
+      try {
+        await nativeStatusBar.setStyle(true);
+        await nativeStatusBar.setBackgroundColor('#fff8f7');
+      } catch {
+        // Status bar is native-only and optional.
+      }
+    };
+
+    void initializePlatform();
 
     // 2. Initialize network & listener
-    nativeNetwork.getStatus().then(setNetworkStatus);
     const removeNetListener = nativeNetwork.onStatusChange(setNetworkStatus);
-
-    // 3. Status Bar configuration
-    nativeStatusBar.setStyle(true); // Dark style (dark icons on light background)
-    nativeStatusBar.setBackgroundColor('#fff8f7');
 
     // 4. Hide Splash Screen smoothly once React has mounted
     const timer = setTimeout(() => {
-      nativeSplashScreen.hide();
+      void nativeSplashScreen.hide();
     }, 400);
 
     // 5. Android Native Back Button behavior
