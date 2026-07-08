@@ -8,36 +8,57 @@ import type { User, Contact, GuardianModeState, EvidenceVault, SafetyLesson, Cha
 
 const delay = (ms: number) => new Promise<void>((res) => setTimeout(res, ms));
 
+import { signInWithPopup, signOut } from 'firebase/auth';
+import { auth, googleProvider } from '../firebase';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 // ── Auth ─────────────────────────────────────────────────────
 export const authApi = {
   login: async (phone: string): Promise<{ user: User; token: string }> => {
-    await delay(800);
-    return {
-      user: {
-        id: 'usr_001',
-        name: 'Elena Carter',
-        phone,
-        email: 'elena@example.com',
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80',
-      },
-      token: 'mock_jwt_token_xyz',
-    };
+    throw new Error("Phone login via Firebase requires OTP verification UI. Please use Google Login for now, or we can build the OTP UI next.");
   },
   loginWithGoogle: async (): Promise<{ user: User; token: string }> => {
-    await delay(600);
-    return {
-      user: {
-        id: 'usr_001',
-        name: 'Elena Carter',
-        phone: '+1 (555) 012-3456',
-        email: 'elena@example.com',
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80',
-      },
-      token: 'mock_google_token',
-    };
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const token = await result.user.getIdToken();
+
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          fullName: result.user.displayName || '',
+          phone: result.user.phoneNumber || ''
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Backend authentication failed');
+      }
+
+      const data = await response.json();
+      const backendUser = data.data.user;
+
+      return {
+        user: {
+          id: backendUser.id,
+          name: backendUser.fullName || 'User',
+          phone: backendUser.phone || '',
+          email: backendUser.email || '',
+          avatarUrl: backendUser.profileImage || result.user.photoURL || '',
+        },
+        token,
+      };
+    } catch (error) {
+      console.error('Login Error:', error);
+      throw error;
+    }
   },
   logout: async (): Promise<void> => {
-    await delay(200);
+    await signOut(auth);
   },
 };
 
