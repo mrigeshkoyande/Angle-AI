@@ -225,6 +225,36 @@ Seraphina maintains 100% PWA compatibility via `vite-plugin-pwa` and Workbox:
 
 ---
 
+## 🛠️ 9. Capacitor 7 Diagnostic & Troubleshooting Commands
+
+If you encounter native hardware permission conflicts or asset sync discrepancies during mobile compilation, run these diagnostic tools:
+
+### Verify Native Plugin Readiness
+To inspect installed Capacitor plugins and verify compatibility with your target Android/iOS SDKs:
+```bash
+npx cap doctor
+```
+
+### Reset & Clean Mobile Builds
+If native gradle or Xcode cache files cause unexpected build failures after upgrading plugins:
+```bash
+# Clean and re-sync Android platform
+cd android && ./gradlew clean && cd ..
+npx cap sync android
+
+# Clean and re-sync iOS platform (macOS)
+npx cap sync ios
+```
+
+### Debugging Hardware Permissions on Device
+To view live runtime console logs, network payloads, and native plugin errors while the app is running on a physical Android device or emulator:
+```bash
+npx cap run android -l --external
+```
+*(This starts a live-reload web server accessible from your mobile device over local Wi-Fi or USB connection)*
+
+---
+
 <div align="center">
 
 **Seraphina AI Guardian — One Codebase. Three Enterprise Platforms.**
