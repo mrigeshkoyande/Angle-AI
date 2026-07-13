@@ -8,12 +8,13 @@ const validate = (req, res, next) => {
   }
 
   const extractedErrors = [];
-  errors.array().map((err) => extractedErrors.push({ [err.path]: err.msg }));
+  errors.array().map((err) => extractedErrors.push({ field: err.path, message: err.msg }));
 
   return res.status(422).json({
     success: false,
-    message: 'Validation failed',
+    message: errors.array()[0]?.msg || 'Request validation failed',
     errors: extractedErrors,
+    timestamp: new Date().toISOString(),
   });
 };
 
