@@ -22,8 +22,16 @@ const errorHandler = (err, req, res, next) => {
   }
 
   // JWT or Firebase Error
-  if (err.code && err.code.startsWith && err.code.startsWith('auth/')) {
-    return sendError(res, 'Authentication failed', 401);
+  if ((err.code && err.code.startsWith && err.code.startsWith('auth/')) || err.name === 'JsonWebTokenError') {
+    return sendError(res, 'Authentication failed or invalid token', 401);
+  }
+
+  if (err.name === 'TokenExpiredError') {
+    return sendError(res, 'Session expired, please log in again', 401);
+  }
+
+  if (err.status === 429 || err.statusCode === 429) {
+    return sendError(res, 'Too many requests, please try again later', 429);
   }
 
   return sendError(res, err.message || 'Internal Server Error', statusCode);
