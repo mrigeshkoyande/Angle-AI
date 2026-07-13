@@ -1,6 +1,7 @@
 const prisma = require('../config/prisma');
 const { sendSuccess, sendError } = require('../utils/response');
 const CONSTANTS = require('../utils/constants');
+const logger = require('../utils/logger');
 
 // @route   POST /api/journey/start
 // @desc    Start a new journey
@@ -12,15 +13,22 @@ const startJourney = async (req, res, next) => {
     const journey = await prisma.journey.create({
       data: {
         userId: user.id,
-        startLatitude: req.body.startLocation.latitude,
-        startLongitude: req.body.startLocation.longitude,
-        startAddress: req.body.startLocation.address,
-        destLatitude: req.body.destination.latitude,
-        destLongitude: req.body.destination.longitude,
-        destAddress: req.body.destination.address,
-        expectedArrival: new Date(req.body.expectedArrival),
+        startLatitude: req.body.startLocation?.latitude || 0,
+        startLongitude: req.body.startLocation?.longitude || 0,
+        startAddress: req.body.startLocation?.address || 'Current Location',
+        destLatitude: req.body.destination?.latitude || 0,
+        destLongitude: req.body.destination?.longitude || 0,
+        destAddress: req.body.destination?.address || 'Destination',
+        expectedArrival: new Date(req.body.expectedArrival || Date.now() + 3600000),
         status: CONSTANTS.JOURNEY_STATUS.STARTED,
       }
+    });
+
+    logger.audit('JOURNEY_STARTED', user.id, {
+      journeyId: journey.id,
+      startAddress: journey.startAddress,
+      destAddress: journey.destAddress,
+      expectedArrival: journey.expectedArrival
     });
 
     return sendSuccess(res, 'Journey started', { journey }, 201);
@@ -66,6 +74,11 @@ const checkIn = async (req, res, next) => {
 
     if (!journey) return sendError(res, 'Journey not found', 404);
     
+    logger.audit('JOURNEY_CHECK_IN', journey.userId, {
+      journeyId: journey.id,
+      checkInTime: journey.checkInTime
+    });
+
     return sendSuccess(res, 'Checked in safely', { journey });
   } catch (error) {
     next(error);
@@ -86,6 +99,12 @@ const endJourney = async (req, res, next) => {
 
     if (!journey) return sendError(res, 'Journey not found', 404);
     
+    logger.audit('JOURNEY_COMPLETED', journey.userId, {
+      journeyId: journey.id,
+      completedAt: new Date().toISOString(),
+      status: CONSTANTS.JOURNEY_STATUS.COMPLETED
+    });
+
     return sendSuccess(res, 'Journey ended safely', { journey });
   } catch (error) {
     next(error);
