@@ -12,7 +12,14 @@ const verifyToken = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     if (!admin) {
-      // For local testing if Firebase Admin is not fully configured, you might mock this or fail
+      if (process.env.NODE_ENV === 'development' || process.env.MOCK_AUTH === 'true') {
+        req.user = {
+          firebaseUID: 'mock-dev-user-uid',
+          email: 'mock@angel-ai.dev',
+          phone_number: '+15550199'
+        };
+        return next();
+      }
       return sendError(res, 'Firebase Admin is not configured', 500);
     }
 
