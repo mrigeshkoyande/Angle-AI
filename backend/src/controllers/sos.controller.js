@@ -1,6 +1,7 @@
 const prisma = require('../config/prisma');
 const { sendSuccess, sendError } = require('../utils/response');
 const { createNotification } = require('../services/notification.service');
+const logger = require('../utils/logger');
 const CONSTANTS = require('../utils/constants');
 
 // @route   POST /api/sos
@@ -24,11 +25,16 @@ const createSOS = async (req, res, next) => {
     const guardians = await prisma.guardian.findMany({ where: { userId: user.id } });
     
     for (let guardian of guardians) {
-      console.log(`Simulating SOS alert to guardian: ${guardian.phone}`);
+      logger.info(`Simulating live emergency broadcast alert to Guardian (${guardian.relationship || 'Trusted Contact'}): ${guardian.phone}`);
     }
 
-    // In prisma we don't have guardianNotified in the schema currently, but for the sake of completeness we ignore it 
-    // or we can just send the notification
+    logger.audit('SOS_TRIGGER_DISPATCHED', user.id, {
+      sosId: sos.id,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      guardiansNotified: guardians.length,
+      triggerMethod: req.body.triggerMethod || 'COVERT_GESTURE_OR_UI'
+    });
 
     await createNotification(user.id, 'SOS Triggered!', 'Your SOS has been triggered and guardians have been notified.', 'SOS');
 
@@ -85,6 +91,13 @@ const updateSOS = async (req, res, next) => {
 
     if (!sos) return sendError(res, 'SOS not found', 404);
     
+    logger.audit('SOS_STATUS_UPDATED', sos.userId, {
+      sosId: sos.id,
+      previousStatus: 'ACTIVE',
+      newStatus: status,
+      resolvedAt: new Date().toISOString()
+    });
+
     return sendSuccess(res, 'SOS status updated', { sos });
   } catch (error) {
     next(error);
