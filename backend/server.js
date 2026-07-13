@@ -13,7 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.FRONTEND_URL || '*'
+    : ['http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true
 }));
 app.use(morgan('dev'));
@@ -22,11 +24,13 @@ app.use(morgan('dev'));
 const routes = require('./src/routes');
 app.use('/api', routes);
 
-// Basic health check route
-app.get('/', (req, res) => {
+// Basic health check routes
+app.get(['/', '/api/health', '/api/status'], (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Angel AI Backend is running successfully',
+    status: 'operational',
+    service: 'Angel AI Backend API',
+    timestamp: new Date().toISOString(),
   });
 });
 
