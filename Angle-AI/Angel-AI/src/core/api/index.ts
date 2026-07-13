@@ -15,7 +15,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // ── Auth ─────────────────────────────────────────────────────
 export const authApi = {
-  login: async (phone: string): Promise<{ user: User; token: string }> => {
+  login: async (_phone: string): Promise<{ user: User; token: string }> => {
     throw new Error("Phone login via Firebase requires OTP verification UI. Please use Google Login for now, or we can build the OTP UI next.");
   },
   loginWithGoogle: async (): Promise<{ user: User; token: string }> => {

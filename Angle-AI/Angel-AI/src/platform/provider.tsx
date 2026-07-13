@@ -1,5 +1,5 @@
 /* eslint-disable react/only-export-components */
-import React, { useEffect, useState, createContext, useContext, type ReactNode } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 import {
   nativePlatform,
   nativeSplashScreen,
@@ -9,30 +9,7 @@ import {
   nativeOrientation,
 } from './services';
 import type { PlatformInfo, NetworkStatusInfo } from './types';
-
-interface PlatformContextValue {
-  platformInfo: PlatformInfo;
-  networkStatus: NetworkStatusInfo;
-}
-
-const PlatformContext = createContext<PlatformContextValue>({
-  platformInfo: {
-    platform: 'web',
-    isNative: false,
-    isIOS: false,
-    isAndroid: false,
-    isWeb: true,
-    isTablet: false,
-  },
-  networkStatus: {
-    connected: true,
-    connectionType: 'wifi',
-  },
-});
-
-export function usePlatformContext() {
-  return useContext(PlatformContext);
-}
+import { PlatformContext } from './context';
 
 export function PlatformProvider({ children }: { children: ReactNode }) {
   const [platformInfo, setPlatformInfo] = useState<PlatformInfo>({
