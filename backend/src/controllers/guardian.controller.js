@@ -2,6 +2,7 @@ const prisma = require('../config/prisma');
 const { sendSuccess, sendError } = require('../utils/response');
 const { checkGuardianLimit, checkDuplicateGuardian } = require('../services/guardian.service');
 const { createNotification } = require('../services/notification.service');
+const logger = require('../utils/logger');
 
 // @route   POST /api/guardian
 // @desc    Add a new guardian
@@ -21,7 +22,13 @@ const addGuardian = async (req, res, next) => {
       }
     });
     
-    // Optional: Send invite SMS/Notification to guardian here
+    logger.audit('GUARDIAN_ADDED', user.id, {
+      guardianId: guardian.id,
+      name: guardian.guardianName,
+      priority: guardian.priority || 1,
+      relationship: guardian.relationship || 'Friend'
+    });
+
     await createNotification(user.id, 'Guardian Added', `${req.body.guardianName} was added as a guardian.`, 'Guardian');
 
     return sendSuccess(res, 'Guardian added successfully', { guardian }, 201);
@@ -59,6 +66,11 @@ const editGuardian = async (req, res, next) => {
 
     if (!guardian) return sendError(res, 'Guardian not found', 404);
     
+    logger.audit('GUARDIAN_UPDATED', guardian.userId, {
+      guardianId: guardian.id,
+      updatedFields: Object.keys(req.body)
+    });
+
     return sendSuccess(res, 'Guardian updated successfully', { guardian });
   } catch (error) {
     next(error);
@@ -75,6 +87,11 @@ const deleteGuardian = async (req, res, next) => {
     });
     if (!guardian) return sendError(res, 'Guardian not found', 404);
     
+    logger.audit('GUARDIAN_REMOVED', guardian.userId, {
+      guardianId: req.params.id,
+      removedAt: new Date().toISOString()
+    });
+
     return sendSuccess(res, 'Guardian deleted successfully');
   } catch (error) {
     next(error);
