@@ -4,3 +4,12 @@ node_modules/
 .DS_Store
 dist/
 build/
+*.tsbuildinfo
+*.log
+.vercel/
+seraphina/node_modules/
+seraphina/dist/
+seraphina/android/.gradle/
+seraphina/android/app/build/
+seraphina/ios/Pods/
+seraphina/ios/DerivedData/
