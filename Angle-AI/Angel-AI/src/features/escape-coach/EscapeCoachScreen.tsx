@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppShell from '../../components/layout/AppShell';
 import Button from '../../components/ui/Button';
 import Chip from '../../components/ui/Chip';
@@ -15,6 +16,7 @@ const quickPrompts = [
 ];
 
 export default function EscapeCoachScreen() {
+  const navigate = useNavigate();
   const { impact, notification } = useHaptics();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -39,7 +41,7 @@ export default function EscapeCoachScreen() {
   const handleSend = async (textToSend?: string) => {
     const query = textToSend || input;
     if (!query.trim()) return;
-    void impact('light');
+    impact('light');
 
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
@@ -55,7 +57,7 @@ export default function EscapeCoachScreen() {
     try {
       const res = await escapeCoachApi.sendMessage(query);
       setIsTyping(false);
-      void notification('success');
+      notification('success');
       setMessages((prev) => [
         ...prev,
         {
@@ -75,22 +77,16 @@ export default function EscapeCoachScreen() {
   };
 
   const handleActionClick = async (actionType: string, value?: string) => {
-    try {
-      await impact('medium');
-      if (value === 'sos') {
-        await sosApi.triggerSOS();
-        alert('SOS Triggered! Dispatching emergency contacts.');
-      } else if (actionType === 'call' && value) {
-        window.location.href = `tel:${value}`;
-      } else if (actionType === 'navigate' && value) {
-        window.location.href = value;
-      } else if (actionType === 'share-location') {
-        alert('Live location broadcast link copied to clipboard and shared with Guardians!');
-      }
-    } catch {
-      if (value === 'sos') {
-        alert('SOS mock dispatch activated. Backend dispatch is currently unavailable.');
-      }
+    impact('medium');
+    if (value === 'sos') {
+      await sosApi.triggerSOS();
+      alert('SOS Triggered! Dispatching emergency contacts.');
+    } else if (actionType === 'call' && value) {
+      window.location.href = `tel:${value}`;
+    } else if (actionType === 'navigate' && value) {
+      navigate(value);
+    } else if (actionType === 'share-location') {
+      alert('Live location broadcast link copied to clipboard and shared with Guardians!');
     }
   };
 
@@ -103,7 +99,7 @@ export default function EscapeCoachScreen() {
             <Icon name="verified" fill className="text-green-600" size={20} />
             <span className="font-semibold">Nearest Safe Haven: Café Coffee Day (120m away)</span>
           </div>
-          <a href="/safety-map" className="text-green-700 underline font-bold">View Map</a>
+          <button onClick={() => navigate('/safety-map')} className="text-green-700 underline font-bold cursor-pointer">View Map</button>
         </div>
 
         {/* Chat Messages */}
@@ -124,7 +120,7 @@ export default function EscapeCoachScreen() {
                       {msg.actions.map((act, idx) => (
                         <button
                           key={idx}
-              onClick={() => void handleActionClick(act.type, act.value)}
+                          onClick={() => handleActionClick(act.type, act.value)}
                           className="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 rounded-lg font-inter text-label-sm font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
                         >
                           <Icon name={act.type === 'call' ? 'call' : act.type === 'share-location' ? 'near_me' : 'warning'} size={16} />
@@ -159,7 +155,7 @@ export default function EscapeCoachScreen() {
           {quickPrompts.map((prompt, i) => (
             <Chip
               key={i}
-              onClick={() => void handleSend(prompt)}
+              onClick={() => handleSend(prompt)}
               className="whitespace-nowrap cursor-pointer hover:bg-primary-container/30 active:scale-95 transition-all"
             >
               {prompt}
@@ -173,18 +169,14 @@ export default function EscapeCoachScreen() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                void handleSend();
-              }
-            }}
+            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Describe what's happening or ask for guidance..."
             className="flex-1 px-4 py-3 bg-surface-container rounded-full font-jakarta text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-inner"
           />
           <Button
             variant="primary"
             size="md"
-            onClick={() => void handleSend()}
+            onClick={() => handleSend()}
             disabled={!input.trim() || isTyping}
             icon="send"
             className="rounded-full w-12 h-12 !p-0 flex items-center justify-center flex-shrink-0"
