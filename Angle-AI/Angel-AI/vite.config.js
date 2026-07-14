@@ -2,11 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
+    server: {
+        host: true,
+        allowedHosts: true,
+    },
     plugins: [
         react(),
         VitePWA({
             registerType: 'autoUpdate',
-            includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg', 'logo.png'],
+            includeAssets: ['favicon.svg', 'icons.svg', 'logo.png', 'vite.svg'],
             manifest: {
                 name: 'Angel AI — Personal Safety Companion',
                 short_name: 'Angel AI',
