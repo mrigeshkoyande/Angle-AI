@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppShell from '../../components/layout/AppShell';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
@@ -9,6 +10,7 @@ import { useApp } from '../../core/hooks/useApp';
 import { useHaptics, usePlatform } from '../../platform';
 
 export default function ProfileScreen() {
+  const navigate = useNavigate();
   const { state, setAuthenticated } = useApp();
   const { impact } = useHaptics();
   const { platform, isNative } = usePlatform();
@@ -28,7 +30,7 @@ export default function ProfileScreen() {
     impact('heavy');
     if (confirm('Are you sure you want to log out of Angel AI?')) {
       setAuthenticated(false);
-      window.location.href = '/auth';
+      navigate('/auth');
     }
   };
 
