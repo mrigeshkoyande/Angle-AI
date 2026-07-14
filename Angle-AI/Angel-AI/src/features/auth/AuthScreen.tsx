@@ -132,9 +132,9 @@ export default function AuthScreen() {
       <footer className="w-full px-5 pb-10 text-center relative z-10">
         <p className="max-w-xs mx-auto font-inter text-label-sm text-on-surface-variant leading-relaxed">
           By continuing, you agree to Angel AI's{' '}
-          <a href="#" className="text-primary hover:underline">Terms of Service</a>{' '}
+          <button onClick={(e) => { e.preventDefault(); alert('Terms of Service dialog opening...'); }} className="text-primary hover:underline cursor-pointer">Terms of Service</button>{' '}
           and{' '}
-          <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
+          <button onClick={(e) => { e.preventDefault(); alert('Privacy Policy dialog opening...'); }} className="text-primary hover:underline cursor-pointer">Privacy Policy</button>.
         </p>
       </footer>
     </div>
