@@ -18,6 +18,7 @@ export default function AppRouter() {
     <Routes>
       <Route path="/" element={<SplashScreen />} />
       <Route path="/onboarding" element={<OnboardingScreen />} />
+      <Route path="/onboarding/:step" element={<OnboardingScreen />} />
       <Route path="/auth" element={<AuthScreen />} />
       <Route path="/home" element={<HomeDashboard />} />
       <Route path="/guardian" element={<GuardianModeScreen />} />
