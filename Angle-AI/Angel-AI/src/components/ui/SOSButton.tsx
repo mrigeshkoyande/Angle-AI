@@ -71,7 +71,7 @@ export default function SOSButton({
         relative w-16 h-16 rounded-full
         bg-sos-gradient text-white
         flex items-center justify-center
-        shadow-sos animation-sos-pulse
+        shadow-sos animate-sos-pulse
         transition-transform duration-150
         ${holding ? 'scale-110' : 'scale-100'}
         active:scale-90
