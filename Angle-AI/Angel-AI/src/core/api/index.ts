@@ -28,35 +28,42 @@ export const authApi = {
       console.warn("Using demo Firebase configuration. Falling back to local mock authentication.");
       await delay(800);
 
-      try {
-        const response = await fetch(`${API_URL}/auth/register`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer mock-dev-user-token`
-          },
-          body: JSON.stringify({
-            fullName: 'Demo User',
-            phone: '+1 555 0199'
-          })
-        });
+      // Only attempt to sync with backend if running locally or a real external API URL is configured
+      const shouldSyncWithBackend = API_URL.startsWith('http') || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-        if (response.ok) {
-          const data = await response.json();
-          const backendUser = data.data.user;
-          return {
-            user: {
-              id: backendUser.id,
-              name: backendUser.fullName || 'Demo User',
-              phone: backendUser.phone || '+1 555 0199',
-              email: backendUser.email || 'mock@angel-ai.dev',
-              avatarUrl: backendUser.profileImage || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+      if (shouldSyncWithBackend) {
+        try {
+          const response = await fetch(`${API_URL}/auth/register`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer mock-dev-user-token`
             },
-            token: 'mock-dev-user-token',
-          };
+            body: JSON.stringify({
+              fullName: 'Demo User',
+              phone: '+1 555 0199'
+            })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            const backendUser = data.data.user;
+            return {
+              user: {
+                id: backendUser.id,
+                name: backendUser.fullName || 'Demo User',
+                phone: backendUser.phone || '+1 555 0199',
+                email: backendUser.email || 'mock@angel-ai.dev',
+                avatarUrl: backendUser.profileImage || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+              },
+              token: 'mock-dev-user-token',
+            };
+          }
+        } catch (e) {
+          console.warn("Backend not reachable or not running. Using client-side mock user fallback.", e);
         }
-      } catch (e) {
-        console.warn("Backend not reachable or not running. Using client-side mock user fallback.", e);
+      } else {
+        console.info("Relative API route detected on production deployment. Skipping backend sync for mock auth.");
       }
 
       return {
