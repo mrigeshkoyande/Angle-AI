@@ -271,3 +271,19 @@ export const selfDefenceApi = {
     ];
   },
 };
+
+// ── Health/Pinger ─────────────────────────────────────────────
+export const healthApi = {
+  ping: async (): Promise<void> => {
+    if (API_URL.startsWith('http')) {
+      try {
+        const response = await fetch(`${API_URL}/health`);
+        if (response.ok) {
+          console.log("Backend pre-warmed successfully.");
+        }
+      } catch (e) {
+        console.warn("Backend pre-warming ping failed:", e);
+      }
+    }
+  }
+};

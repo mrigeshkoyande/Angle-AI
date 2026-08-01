@@ -41,6 +41,12 @@ The backend (`backend/`) is a Node.js + Express REST API integrated with Supabas
 3. Add your production environment variables (`PORT`, `DATABASE_URL`, `DIRECT_URL`, `FIREBASE_PRIVATE_KEY`, `CLOUDINARY_API_KEY`, `GEMINI_API_KEY`).
 4. **Database Migrations:** Prisma will automatically connect and validate schema instances against your pooled Supabase PostgreSQL database (`DATABASE_URL`).
 
+### 💡 Keep-Alive (Prevent Sleep on Free Tiers)
+Because free tier platforms like Render spin down containers after 15 minutes of inactivity:
+1. We have added an automatic background **pre-warm ping** on the frontend. When a user lands on the website, the client app immediately calls the health check to start waking up the server early.
+2. For permanent zero-latency wake-up, we recommend setting up a free monitor on [cron-job.org](https://cron-job.org) or [UptimeRobot](https://uptimerobot.com) pointing to your backend health check url:
+   `https://your-backend.onrender.com/api/health` (pushed every 10–12 minutes).
+
 ---
 
 ## 📱 3. Native Android Application (Google Play Store)
