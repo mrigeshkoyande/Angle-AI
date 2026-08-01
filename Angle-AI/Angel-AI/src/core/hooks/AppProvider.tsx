@@ -1,6 +1,7 @@
 /* eslint-disable react/only-export-components */
-import React, { createContext, useContext, useReducer, useCallback, type ReactNode } from 'react';
+import React, { useReducer, useCallback, type ReactNode } from 'react';
 import type { AppState, User, Contact, GuardianModeState, SOSState, NavTab } from '../types';
+import { AppContext } from './useApp';
 
 // ── Initial State ─────────────────────────────────────────────
 const initialState: AppState = {
@@ -54,20 +55,6 @@ function reducer(state: AppState, action: Action): AppState {
   }
 }
 
-// ── Context ───────────────────────────────────────────────────
-interface AppContextValue {
-  state: AppState;
-  setUser: (user: User | null) => void;
-  setAuthenticated: (auth: boolean) => void;
-  setGuardianMode: (mode: Partial<GuardianModeState>) => void;
-  setSosState: (state: SOSState) => void;
-  setContacts: (contacts: Contact[]) => void;
-  addContact: (contact: Contact) => void;
-  setNavTab: (tab: NavTab) => void;
-}
-
-const AppContext = createContext<AppContextValue | null>(null);
-
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -84,10 +71,4 @@ export function AppProvider({ children }: { children: ReactNode }) {
       {children}
     </AppContext.Provider>
   );
-}
-
-export function useApp() {
-  const ctx = useContext(AppContext);
-  if (!ctx) throw new Error('useApp must be used within AppProvider');
-  return ctx;
 }

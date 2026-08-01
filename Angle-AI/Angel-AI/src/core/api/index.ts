@@ -23,6 +23,54 @@ export const authApi = {
     throw new Error("Phone login via Firebase requires OTP verification UI. Please use Google Login for now, or we can build the OTP UI next.");
   },
   loginWithGoogle: async (): Promise<{ user: User; token: string }> => {
+    const isDemoKey = !import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_FIREBASE_API_KEY.includes('DemoKey');
+    if (isDemoKey) {
+      console.warn("Using demo Firebase configuration. Falling back to local mock authentication.");
+      await delay(800);
+
+      try {
+        const response = await fetch(`${API_URL}/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer mock-dev-user-token`
+          },
+          body: JSON.stringify({
+            fullName: 'Demo User',
+            phone: '+1 555 0199'
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const backendUser = data.data.user;
+          return {
+            user: {
+              id: backendUser.id,
+              name: backendUser.fullName || 'Demo User',
+              phone: backendUser.phone || '+1 555 0199',
+              email: backendUser.email || 'mock@angel-ai.dev',
+              avatarUrl: backendUser.profileImage || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+            },
+            token: 'mock-dev-user-token',
+          };
+        }
+      } catch (e) {
+        console.warn("Backend not reachable or not running. Using client-side mock user fallback.", e);
+      }
+
+      return {
+        user: {
+          id: 'mock-dev-user-uid',
+          name: 'Demo User',
+          phone: '+1 555 0199',
+          email: 'mock@angel-ai.dev',
+          avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+        },
+        token: 'mock-dev-user-token',
+      };
+    }
+
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const token = await result.user.getIdToken();
